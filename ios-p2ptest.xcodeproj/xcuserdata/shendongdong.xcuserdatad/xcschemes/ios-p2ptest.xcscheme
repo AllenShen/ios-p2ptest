@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   version = "1.3">
+   <BuildAction>
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForRunning = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4D702D5502D8D21B12538B63"
+               BuildableName = "ios-p2ptest.app"
+               BlueprintName = "ios-p2ptest"
+               ReferencedContainer = "container:ios-p2ptest.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <LaunchAction
+      useCustomWorkingDirectory = "NO"
+      buildConfiguration = "Debug">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "4D702D5502D8D21B12538B63"
+            BuildableName = "ios-p2ptest.app"
+            BlueprintName = "ios-p2ptest"
+            ReferencedContainer = "container:ios-p2ptest.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+</Scheme>
