@@ -20,23 +20,36 @@ CloudClient* RakNetStuff::cloudClient = NULL;
 FullyConnectedMesh2* RakNetStuff::fullyConnectedMesh2 = NULL;
 
 RakNetStuff::RakNetStuff() {
-
+    this->initRakPeer();
+    this->init();
 }
 
-void RakNetStuff::init() {
+void RakNetStuff::clearInfo()
+{
+    if(rakPeer == NULL)
+        return;
+    if(RakNetStuff::replicaManager3)
+        rakPeer->DetachPlugin(RakNetStuff::replicaManager3);
+    if(RakNetStuff::natTypeDetectionClient)
+        rakPeer->DetachPlugin(RakNetStuff::natTypeDetectionClient);
+    if(RakNetStuff::natPunchthroughClient)
+        rakPeer->DetachPlugin(RakNetStuff::natPunchthroughClient);
+    if(RakNetStuff::cloudClient)
+        rakPeer->DetachPlugin(RakNetStuff::cloudClient);
+    if(RakNetStuff::fullyConnectedMesh2)
+        rakPeer->DetachPlugin(RakNetStuff::fullyConnectedMesh2);
+    RakPeerInterface::DestroyInstance(rakPeer);
+    rakPeer = NULL;
+}
 
+void RakNetStuff::initRakPeer()
+{
     static const int MAX_PLAYERS=32;
-    static const unsigned short TCP_PORT=0;
-    static const RakNet::TimeMS UDP_SLEEP_TIMER=30;
-
-    // Basis of all UDP communications
     rakPeer=RakNet::RakPeerInterface::GetInstance();
-    // Using fixed port so we can use AdvertiseSystem and connect on the LAN if the server is not available.
     RakNet::SocketDescriptor sd(1234,0);
     sd.socketFamily=AF_INET; // Only IPV4 supports broadcast on 255.255.255.255
     while (IRNS2_Berkley::IsPortInUse(sd.port, sd.hostAddress, sd.socketFamily, SOCK_DGRAM)==true)
         sd.port++;
-    // +1 is for the connection to the NAT punchthrough server
     RakNet::StartupResult sr = rakPeer->Startup(MAX_PLAYERS+1,&sd,1);
     RakAssert(sr==RakNet::RAKNET_STARTED);
     rakPeer->SetMaximumIncomingConnections(MAX_PLAYERS);
@@ -44,6 +57,12 @@ void RakNetStuff::init() {
     rakPeer->SetTimeoutTime(5000,UNASSIGNED_SYSTEM_ADDRESS);
     // ReplicaManager3 replies on NetworkIDManager. It assigns numbers to objects so they can be looked up over the network
     // It's a class in case you wanted to have multiple worlds, then you could have multiple instances of NetworkIDManager
+}
+
+void RakNetStuff::init() {
+
+    static const unsigned short TCP_PORT=0;
+    static const RakNet::TimeMS UDP_SLEEP_TIMER=30;
 
     networkIDManager=new NetworkIDManager;
     // Automatically sends around new / deleted / changed game objects
@@ -60,7 +79,7 @@ void RakNetStuff::init() {
     //NAT类型检测
     natTypeDetectionClient = new NatTypeDetectionClient;
     rakPeer->AttachPlugin(natTypeDetectionClient);
-    natTypeDetectionClient->DetectNATType();
+//    natTypeDetectionClient->DetectNATType();
 
     //NAT穿透
     natPunchthroughClient=new NatPunchthroughClient;

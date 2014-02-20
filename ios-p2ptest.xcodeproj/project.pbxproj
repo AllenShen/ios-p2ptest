@@ -86,6 +86,7 @@
 		4D7022ECA191788DAE87BD85 /* CCActionEase.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D70202B6FE6FC29F7BDC04B /* CCActionEase.cpp */; };
 		4D70230435CE9CB1980CDAAE /* CCSpriteLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702EBB87D9AFE8A9426892 /* CCSpriteLoader.cpp */; };
 		4D70230570FA9D2AB5E5369E /* _FindFirst.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7024E0786C298D495B5AF5 /* _FindFirst.cpp */; };
+		4D7023254536E6FB6B6368F9 /* P2PManagerFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702883C97F6611099E3E4D /* P2PManagerFunc.cpp */; };
 		4D70233FA964705EA95E79A4 /* HTTPConnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702CE9F63EB2CA8B765757 /* HTTPConnection.cpp */; };
 		4D7023433A342C3A65199333 /* TelnetTransport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702F24C95BBAB8FEB289C7 /* TelnetTransport.cpp */; };
 		4D702354CBEA8B246A96E442 /* RelayPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D70221D8C355F4A721D1A93 /* RelayPlugin.cpp */; };
@@ -140,6 +141,7 @@
 		4D702533F84C56C1FBCFEC3D /* DS_HuffmanEncodingTree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702127D2A00C5F9218253F /* DS_HuffmanEncodingTree.cpp */; };
 		4D702538A2794A1354518CA3 /* Animation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7023D82F02A1788E5F8526 /* Animation.cpp */; };
 		4D70253BE594E27C75BE1004 /* CCSorting.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7028F89C65E7EA208FAAE0 /* CCSorting.cpp */; };
+		4D702540E94F231B4B00C00E /* NatTypeDetectionHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702A2BE5E1C408AB9C0074 /* NatTypeDetectionHandler.cpp */; };
 		4D7025427356BC0E70574F93 /* RakNetCommandParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7020E17F56C1B04583E4B5 /* RakNetCommandParser.cpp */; };
 		4D70254F4E43EEACAA98A4F8 /* cpPinJoint.c in Sources */ = {isa = PBXBuildFile; fileRef = 4D702C8590D3B240DB03B236 /* cpPinJoint.c */; };
 		4D70254F6CFA0D72690BD192 /* ioapi.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702EC57B092BE9931CAFBD /* ioapi.cpp */; };
@@ -390,16 +392,19 @@
 		4D702FCAED4C9DD56E64484E /* CCMenuItem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702AE2187E415C9C4DCD66 /* CCMenuItem.cpp */; };
 		4D702FCD167BCBF8EA9D9FDC /* CCEditBoxImplTizen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D70204468E33AFDED1731D2 /* CCEditBoxImplTizen.cpp */; };
 		4D702FD249DD7334A6CC9889 /* Slot.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7027D60FF2EF98CB2BB06C /* Slot.cpp */; };
+		4D702FD709CD72F0A96C10E5 /* NatPunchThroughHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D70282438ED22FC50FB2AB0 /* NatPunchThroughHandler.cpp */; };
 		4D702FDA1D750A1CF16FCC76 /* NatTypeDetectionServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D70246D60BE869BF980AF89 /* NatTypeDetectionServer.cpp */; };
 		4D702FE4E6C00CE94502C8BB /* NatPunchthroughServer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7021B00316392AA6EBC2AB /* NatPunchthroughServer.cpp */; };
 		4D702FFD4F0CD01FF0657824 /* CCLock.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702770FF9A78FDD2DF9379 /* CCLock.cpp */; };
 		CEB4A1B118AB94500009DDF1 /* libcurl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB4A1B018AB94500009DDF1 /* libcurl.a */; };
 		CEB4A1B518AB95210009DDF1 /* libwebp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB4A1B418AB95210009DDF1 /* libwebp.a */; };
 		CEB4A1DC18ABA66D0009DDF1 /* BaseIrrlichtReplica.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB4A1D418ABA66D0009DDF1 /* BaseIrrlichtReplica.cpp */; };
-		CEB4A1DD18ABA66D0009DDF1 /* RakNetHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB4A1D618ABA66D0009DDF1 /* RakNetHandler.cpp */; };
 		CEB4A1DE18ABA66D0009DDF1 /* RakNetStuff.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB4A1D818ABA66D0009DDF1 /* RakNetStuff.cpp */; };
 		CEB4A1DF18ABA66D0009DDF1 /* ReplicaManager3Irrlicht.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB4A1DA18ABA66D0009DDF1 /* ReplicaManager3Irrlicht.cpp */; };
 		CEB4A1E118ABA96F0009DDF1 /* libminiupnpc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB4A1E018ABA96F0009DDF1 /* libminiupnpc.a */; };
+		CEB6D41318ADFB6300F523D1 /* UPnPHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB6D41118ADFB6300F523D1 /* UPnPHandler.cpp */; };
+		CEB6D41618ADFB8100F523D1 /* BaseStageHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB6D41418ADFB8100F523D1 /* BaseStageHandler.cpp */; };
+		CEB6D41A18AE11E300F523D1 /* P2PConnectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB6D41818AE11E300F523D1 /* P2PConnectManager.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -482,6 +487,7 @@
 		4D70214411F581CC213A0FBE /* CloudCommon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CloudCommon.cpp; sourceTree = "<group>"; };
 		4D70214F5DF037771C4007DA /* EpochTimeToString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EpochTimeToString.h; sourceTree = "<group>"; };
 		4D702162E7A27903CBC58C2D /* RakNetDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RakNetDefines.h; sourceTree = "<group>"; };
+		4D70216D17F6D020B6C9225C /* NatTypeDetectionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NatTypeDetectionHandler.h; sourceTree = "<group>"; };
 		4D70216F6748EA55A6DCF72D /* MessageFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MessageFilter.cpp; sourceTree = "<group>"; };
 		4D70217041A1B7ADB8AA06DA /* CCEditBoxImplMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCEditBoxImplMac.h; path = libs/extensions/GUI/CCEditBox/CCEditBoxImplMac.h; sourceTree = "<group>"; };
 		4D702178A5D29EE672D9B983 /* ccShader_PositionTextureA8Color_frag.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ccShader_PositionTextureA8Color_frag.h; path = libs/cocos2dx/shaders/ccShader_PositionTextureA8Color_frag.h; sourceTree = "<group>"; };
@@ -881,7 +887,9 @@
 		4D70281FF8938EF640019C50 /* CCTextureETC.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCTextureETC.cpp; path = libs/cocos2dx/textures/CCTextureETC.cpp; sourceTree = "<group>"; };
 		4D702821457C8CE418BEEAEF /* CCMenuItemImageLoader.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCMenuItemImageLoader.cpp; path = libs/extensions/CCBReader/CCMenuItemImageLoader.cpp; sourceTree = "<group>"; };
 		4D70282374E94E344197D02A /* ZipUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ZipUtils.h; path = libs/cocos2dx/support/zip_support/ZipUtils.h; sourceTree = "<group>"; };
+		4D70282438ED22FC50FB2AB0 /* NatPunchThroughHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NatPunchThroughHandler.cpp; sourceTree = "<group>"; };
 		4D70282439C771F6DDA60065 /* EmailSender.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EmailSender.cpp; sourceTree = "<group>"; };
+		4D70283011DDD873BA231464 /* NatPunchThroughHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NatPunchThroughHandler.h; sourceTree = "<group>"; };
 		4D702833051D552D3D55263B /* miniupnpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = miniupnpc.h; sourceTree = "<group>"; };
 		4D702839255ACCDCF44C8EF3 /* CCPhysicsDebugNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCPhysicsDebugNode.cpp; path = libs/extensions/physics_nodes/CCPhysicsDebugNode.cpp; sourceTree = "<group>"; };
 		4D70283BE10CAA38E8819A8D /* cpGearJoint.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = cpGearJoint.c; path = libs/chipmunk/src/constraints/cpGearJoint.c; sourceTree = "<group>"; };
@@ -897,6 +905,7 @@
 		4D7028798D4A51221172BF22 /* Gets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gets.h; sourceTree = "<group>"; };
 		4D70287D1E590905011D682E /* CCNode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCNode.h; path = libs/cocos2dx/base_nodes/CCNode.h; sourceTree = "<group>"; };
 		4D702880306533450EA3A2DD /* SkeletonData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SkeletonData.h; path = libs/extensions/spine/SkeletonData.h; sourceTree = "<group>"; };
+		4D702883C97F6611099E3E4D /* P2PManagerFunc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = P2PManagerFunc.cpp; sourceTree = "<group>"; };
 		4D702895685C50428D516C2C /* XBox360Includes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XBox360Includes.h; sourceTree = "<group>"; };
 		4D70289AE1057C3272FF46E5 /* quaternion.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = quaternion.h; path = libs/cocos2dx/kazmath/include/kazmath/quaternion.h; sourceTree = "<group>"; };
 		4D70289CD2C96B266FF84F7C /* CCPhysicsSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCPhysicsSprite.cpp; path = libs/extensions/physics_nodes/CCPhysicsSprite.cpp; sourceTree = "<group>"; };
@@ -969,6 +978,7 @@
 		4D702A0EB6BE465CA6DB95FD /* CCControlPotentiometer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCControlPotentiometer.cpp; path = libs/extensions/GUI/CCControlExtension/CCControlPotentiometer.cpp; sourceTree = "<group>"; };
 		4D702A1302B11A1AC1D885BB /* cpBB.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = cpBB.c; path = libs/chipmunk/src/cpBB.c; sourceTree = "<group>"; };
 		4D702A1AC190F63540FC85EB /* easy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = easy.h; path = libs/cocos2dx/platform/third_party/ios/curl/easy.h; sourceTree = "<group>"; };
+		4D702A2BE5E1C408AB9C0074 /* NatTypeDetectionHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = NatTypeDetectionHandler.cpp; sourceTree = "<group>"; };
 		4D702A2D57A3C08F9E3057D6 /* CCNodeLoaderListener.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCNodeLoaderListener.h; path = libs/extensions/CCBReader/CCNodeLoaderListener.h; sourceTree = "<group>"; };
 		4D702A31C13367A22C0A9D59 /* platform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = platform.cpp; path = libs/cocos2dx/platform/platform.cpp; sourceTree = "<group>"; };
 		4D702A3911F28424C0BD81FD /* CCEventType.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCEventType.h; path = libs/cocos2dx/include/CCEventType.h; sourceTree = "<group>"; };
@@ -977,6 +987,7 @@
 		4D702A41B651E623C719EA68 /* CCLayerColorLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCLayerColorLoader.h; path = libs/extensions/CCBReader/CCLayerColorLoader.h; sourceTree = "<group>"; };
 		4D702A4D16311EF284C521C4 /* CCES2Renderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = CCES2Renderer.m; path = libs/cocos2dx/platform/ios/CCES2Renderer.m; sourceTree = "<group>"; };
 		4D702A549DF88442A302B263 /* Base64Encoder.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Base64Encoder.cpp; sourceTree = "<group>"; };
+		4D702A6135948CEC5CF00384 /* P2PManagerFunc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P2PManagerFunc.h; sourceTree = "<group>"; };
 		4D702A678AFB363D1D023904 /* RakNetSocket2_PS4.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RakNetSocket2_PS4.cpp; sourceTree = "<group>"; };
 		4D702A7896DE95B3E8235433 /* cpGrooveJoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = cpGrooveJoint.h; path = libs/chipmunk/include/chipmunk/constraints/cpGrooveJoint.h; sourceTree = "<group>"; };
 		4D702A7A97B87F8C5ABD6A6E /* chipmunk.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = chipmunk.c; path = libs/chipmunk/src/chipmunk.c; sourceTree = "<group>"; };
@@ -1282,15 +1293,20 @@
 		4D702FF9BBA693036FA26F17 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-Small-50.png"; path = "Resources/Icon-Small-50.png"; sourceTree = "<group>"; };
 		CEB4A1B018AB94500009DDF1 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = libs/libwebsockets/ios/lib/libcurl.a; sourceTree = "<group>"; };
 		CEB4A1B418AB95210009DDF1 /* libwebp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libwebp.a; path = libs/libwebsockets/ios/lib/libwebp.a; sourceTree = "<group>"; };
-		CEB4A1D418ABA66D0009DDF1 /* BaseIrrlichtReplica.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseIrrlichtReplica.cpp; path = Classes/BaseIrrlichtReplica.cpp; sourceTree = "<group>"; };
-		CEB4A1D518ABA66D0009DDF1 /* BaseIrrlichtReplica.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseIrrlichtReplica.h; path = Classes/BaseIrrlichtReplica.h; sourceTree = "<group>"; };
-		CEB4A1D618ABA66D0009DDF1 /* RakNetHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RakNetHandler.cpp; path = Classes/RakNetHandler.cpp; sourceTree = "<group>"; };
-		CEB4A1D718ABA66D0009DDF1 /* RakNetHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RakNetHandler.h; path = Classes/RakNetHandler.h; sourceTree = "<group>"; };
-		CEB4A1D818ABA66D0009DDF1 /* RakNetStuff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RakNetStuff.cpp; path = Classes/RakNetStuff.cpp; sourceTree = "<group>"; };
-		CEB4A1D918ABA66D0009DDF1 /* RakNetStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RakNetStuff.h; path = Classes/RakNetStuff.h; sourceTree = "<group>"; };
-		CEB4A1DA18ABA66D0009DDF1 /* ReplicaManager3Irrlicht.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ReplicaManager3Irrlicht.cpp; path = Classes/ReplicaManager3Irrlicht.cpp; sourceTree = "<group>"; };
-		CEB4A1DB18ABA66D0009DDF1 /* ReplicaManager3Irrlicht.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReplicaManager3Irrlicht.h; path = Classes/ReplicaManager3Irrlicht.h; sourceTree = "<group>"; };
+		CEB4A1D418ABA66D0009DDF1 /* BaseIrrlichtReplica.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BaseIrrlichtReplica.cpp; path = ../BaseIrrlichtReplica.cpp; sourceTree = "<group>"; };
+		CEB4A1D518ABA66D0009DDF1 /* BaseIrrlichtReplica.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseIrrlichtReplica.h; path = ../BaseIrrlichtReplica.h; sourceTree = "<group>"; };
+		CEB4A1D818ABA66D0009DDF1 /* RakNetStuff.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = RakNetStuff.cpp; path = ../RakNetStuff.cpp; sourceTree = "<group>"; };
+		CEB4A1D918ABA66D0009DDF1 /* RakNetStuff.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RakNetStuff.h; path = ../RakNetStuff.h; sourceTree = "<group>"; };
+		CEB4A1DA18ABA66D0009DDF1 /* ReplicaManager3Irrlicht.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ReplicaManager3Irrlicht.cpp; path = ../ReplicaManager3Irrlicht.cpp; sourceTree = "<group>"; };
+		CEB4A1DB18ABA66D0009DDF1 /* ReplicaManager3Irrlicht.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ReplicaManager3Irrlicht.h; path = ../ReplicaManager3Irrlicht.h; sourceTree = "<group>"; };
 		CEB4A1E018ABA96F0009DDF1 /* libminiupnpc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libminiupnpc.a; path = libs/libminiupnpc.a; sourceTree = "<group>"; };
+		CEB6D40F18ADD43400F523D1 /* P2PDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = P2PDefines.h; path = ../P2PDefines.h; sourceTree = "<group>"; };
+		CEB6D41118ADFB6300F523D1 /* UPnPHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UPnPHandler.cpp; sourceTree = "<group>"; };
+		CEB6D41218ADFB6300F523D1 /* UPnPHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UPnPHandler.h; sourceTree = "<group>"; };
+		CEB6D41418ADFB8100F523D1 /* BaseStageHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BaseStageHandler.cpp; sourceTree = "<group>"; };
+		CEB6D41518ADFB8100F523D1 /* BaseStageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseStageHandler.h; sourceTree = "<group>"; };
+		CEB6D41818AE11E300F523D1 /* P2PConnectManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = P2PConnectManager.cpp; sourceTree = "<group>"; };
+		CEB6D41918AE11E300F523D1 /* P2PConnectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P2PConnectManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2799,14 +2815,7 @@
 		4D702FC1551BAB4467A2D167 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				CEB4A1D418ABA66D0009DDF1 /* BaseIrrlichtReplica.cpp */,
-				CEB4A1D518ABA66D0009DDF1 /* BaseIrrlichtReplica.h */,
-				CEB4A1D618ABA66D0009DDF1 /* RakNetHandler.cpp */,
-				CEB4A1D718ABA66D0009DDF1 /* RakNetHandler.h */,
-				CEB4A1D818ABA66D0009DDF1 /* RakNetStuff.cpp */,
-				CEB4A1D918ABA66D0009DDF1 /* RakNetStuff.h */,
-				CEB4A1DA18ABA66D0009DDF1 /* ReplicaManager3Irrlicht.cpp */,
-				CEB4A1DB18ABA66D0009DDF1 /* ReplicaManager3Irrlicht.h */,
+				CEB6D41018ADFB6300F523D1 /* p2pnetwork */,
 				4D7027C9AD2882345507926E /* AppDelegate.h */,
 				4D70220745F274ECF69BC7C5 /* AppDelegate.cpp */,
 				4D702F8384D9427F5EB80589 /* HelloWorldScene.h */,
@@ -2834,6 +2843,49 @@
 				4D702C96E468CCB864648D8C /* CCTexturePVR.h */,
 			);
 			name = textures;
+			sourceTree = "<group>";
+		};
+		CEB687E118B5E467003A95D0 /* handlers */ = {
+			isa = PBXGroup;
+			children = (
+				CEB6D41118ADFB6300F523D1 /* UPnPHandler.cpp */,
+				CEB6D41218ADFB6300F523D1 /* UPnPHandler.h */,
+				CEB6D41418ADFB8100F523D1 /* BaseStageHandler.cpp */,
+				CEB6D41518ADFB8100F523D1 /* BaseStageHandler.h */,
+				4D702A2BE5E1C408AB9C0074 /* NatTypeDetectionHandler.cpp */,
+				4D70216D17F6D020B6C9225C /* NatTypeDetectionHandler.h */,
+				4D70282438ED22FC50FB2AB0 /* NatPunchThroughHandler.cpp */,
+				4D70283011DDD873BA231464 /* NatPunchThroughHandler.h */,
+			);
+			name = handlers;
+			sourceTree = "<group>";
+		};
+		CEB687E218B5E491003A95D0 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				CEB4A1D418ABA66D0009DDF1 /* BaseIrrlichtReplica.cpp */,
+				CEB4A1D518ABA66D0009DDF1 /* BaseIrrlichtReplica.h */,
+				CEB4A1DA18ABA66D0009DDF1 /* ReplicaManager3Irrlicht.cpp */,
+				CEB4A1DB18ABA66D0009DDF1 /* ReplicaManager3Irrlicht.h */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
+		CEB6D41018ADFB6300F523D1 /* p2pnetwork */ = {
+			isa = PBXGroup;
+			children = (
+				CEB687E218B5E491003A95D0 /* data */,
+				CEB687E118B5E467003A95D0 /* handlers */,
+				CEB6D41818AE11E300F523D1 /* P2PConnectManager.cpp */,
+				CEB4A1D818ABA66D0009DDF1 /* RakNetStuff.cpp */,
+				CEB4A1D918ABA66D0009DDF1 /* RakNetStuff.h */,
+				CEB6D41918AE11E300F523D1 /* P2PConnectManager.h */,
+				CEB6D40F18ADD43400F523D1 /* P2PDefines.h */,
+				4D702883C97F6611099E3E4D /* P2PManagerFunc.cpp */,
+				4D702A6135948CEC5CF00384 /* P2PManagerFunc.h */,
+			);
+			name = p2pnetwork;
+			path = Classes/p2pnetwork;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3110,6 +3162,7 @@
 				4D702FFD4F0CD01FF0657824 /* CCLock.cpp in Sources */,
 				4D702CB86CB9566F633F8913 /* CCThread.mm in Sources */,
 				4D702F2BDFD65544850B33D9 /* EAGLView.mm in Sources */,
+				CEB6D41618ADFB8100F523D1 /* BaseStageHandler.cpp in Sources */,
 				4D70249115C2BC67A28C5B2D /* AccelerometerSimulation.m in Sources */,
 				4D702B576F718EF693EC2F87 /* platform.cpp in Sources */,
 				4D702BF612E029D037D1946E /* CCScriptSupport.cpp in Sources */,
@@ -3155,6 +3208,7 @@
 				4D702D346BB52B8359327E36 /* CCTMXTiledMap.cpp in Sources */,
 				4D7027E8DA6FD42227A1597F /* CCTMXXMLParser.cpp in Sources */,
 				4D70204183FC7E62621498B5 /* CCTouch.cpp in Sources */,
+				CEB6D41A18AE11E300F523D1 /* P2PConnectManager.cpp in Sources */,
 				CEB4A1DC18ABA66D0009DDF1 /* BaseIrrlichtReplica.cpp in Sources */,
 				4D702ED969D36B1EFA89A9FD /* CCTouchDispatcher.cpp in Sources */,
 				4D702552F99A2C7B18502238 /* CCTouchHandler.cpp in Sources */,
@@ -3205,6 +3259,7 @@
 				4D7021949EC510374BBCEA52 /* PacketLogger.cpp in Sources */,
 				4D70271BBD551D37D35F0C5E /* RakNetSocket.cpp in Sources */,
 				4D7023EF07479E0F0C199612 /* SendToThread.cpp in Sources */,
+				CEB6D41318ADFB6300F523D1 /* UPnPHandler.cpp in Sources */,
 				4D7022479CAD7E1DAA65CAEC /* TCPInterface.cpp in Sources */,
 				4D7020A02E3E58AADDCFBEFA /* TeamBalancer.cpp in Sources */,
 				4D7026B3924E953432E63AF4 /* UDPForwarder.cpp in Sources */,
@@ -3242,7 +3297,6 @@
 				4D702375C0EE2EAEDD74E166 /* EpochTimeToString.cpp in Sources */,
 				4D70213B6FB2AADFA4A4B209 /* RakMemoryOverride.cpp in Sources */,
 				4D7021A54E47A476ED4E9222 /* RakNetSocket2_PS4.cpp in Sources */,
-				CEB4A1DD18ABA66D0009DDF1 /* RakNetHandler.cpp in Sources */,
 				4D70206BE3C4DAAEDD08612C /* StatisticsHistory.cpp in Sources */,
 				4D7025C13BBF9A312DCA5C86 /* VariadicSQLParser.cpp in Sources */,
 				4D702E629834DEE717BD398D /* RakNetSocket2_Vita.cpp in Sources */,
@@ -3276,6 +3330,9 @@
 				4D7027D47F3B9AE140CF6E62 /* RakNetSocket2_Berkley_NativeClient.cpp in Sources */,
 				4D70221F13ACD4DDB44CD2E3 /* PlayerReplica.cpp in Sources */,
 				CEB4A1DF18ABA66D0009DDF1 /* ReplicaManager3Irrlicht.cpp in Sources */,
+				4D702540E94F231B4B00C00E /* NatTypeDetectionHandler.cpp in Sources */,
+				4D702FD709CD72F0A96C10E5 /* NatPunchThroughHandler.cpp in Sources */,
+				4D7023254536E6FB6B6368F9 /* P2PManagerFunc.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

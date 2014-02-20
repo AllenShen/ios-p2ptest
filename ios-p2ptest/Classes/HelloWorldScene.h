@@ -2,13 +2,10 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
-#include "RakNetHandler.h"
+#include "P2PConnectManager.h"
 
 class HelloWorld : public cocos2d::CCLayer
 {
-
-private:
-    RakNetHandler* handler;
 
 public:
     // Method 'init' in cocos2d-x returns bool, instead of 'id' in cocos2d-iphone (an object pointer)

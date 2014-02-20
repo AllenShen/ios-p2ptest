@@ -21,15 +21,18 @@
 #include "MessageIdentifiers.h"
 #include "ReplicaManager3Irrlicht.h"
 #include "NatTypeDetectionClient.h"
+#include "P2PDefines.h"
 
 using namespace RakNet;
 
 class PlayerReplica;
 
-#define DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_PORT 61111
-#define DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP "natpunch.jenkinssoftware.com"
-
 class RakNetStuff {
+
+private:
+    void initRakPeer();
+    void init();
+
 public:
 
     static RakPeerInterface *rakPeer;
@@ -43,7 +46,9 @@ public:
 
     RakNetStuff();
 
-    void init();
+    void clearInfo();
+
+    STATIC_GET_SINGLEINSTANCE(RakNetStuff);
 
     virtual ~RakNetStuff();
 };

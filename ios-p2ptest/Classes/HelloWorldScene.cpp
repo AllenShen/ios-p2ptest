@@ -29,8 +29,6 @@ bool HelloWorld::init()
     {
         return false;
     }
-    
-    this->handler = NULL;
 
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -79,21 +77,9 @@ bool HelloWorld::init()
 
 void HelloWorld::menuCloseCallback(CCObject* pSender)
 {
-
-    if(handler == NULL)
-    {
-        handler = new RakNetHandler();
-        handler->startTest();
-        this->scheduleUpdate();
-
-//        while(1)
-//        {
-//            handler->UpdateRakNet();
-//            sleep(10);
-//        }
-
-    }
-
+    P2PConnectManager::getInstance()->startNetWork();
+    this->scheduleUpdate();
+    
 //    CCDirector::sharedDirector()->end();
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
@@ -103,5 +89,5 @@ void HelloWorld::menuCloseCallback(CCObject* pSender)
 
 void HelloWorld::update(float delta) {
     CCNode::update(delta);
-    handler->UpdateRakNet();
+    P2PConnectManager::getInstance()->UpdateRakNet();
 }
