@@ -61,12 +61,13 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
             this->uPnPHandler->startUPnp();
             this->uPnPHandler->handleSinglePacket(packet);
             break;
-        case P2PStage_ConnetToLogicServer:
-            printf("正在连接到guid server...  \n");
-            break;
         case P2PStage_NATPunchThrough:
-            natPunchThroughHandler->startCountDown();
             printf("开始进行NAT穿透...  \n");
+            natPunchThroughHandler->startCountDown();
+            if(this->isHost)                                    //我方发起发，主动发出穿墙请求
+            {
+                natPunchThroughHandler->startPunch(peerGuid);
+            }
             break;
         case P2PStage_ConnectToPeer:                                        //nat穿透成功  连接peer
             break;
@@ -208,11 +209,6 @@ void P2PConnectManager::UpdateRakNet()
                     printf("连接punchThrough服务器失败,\n");
                     this->enterStage(P2PStage_ConnectForwardServer);
                 }
-                else if(this->curConnectStage == P2PStage_ConnetToLogicServer)
-                {
-                    printf("无法连接master服务器  \n");
-                    this->onConnectFailed();
-                }
                 else if(this->curConnectStage == P2PStage_NATPunchThrough || this->curConnectStage == P2PStage_ConnectToPeer)
                 {
                     printf("NatCompleteServer 连接失败, 不能建立p2p连接 \n");
@@ -232,15 +228,18 @@ void P2PConnectManager::UpdateRakNet()
                 RakNet::BitStream bs(packet->data,packet->length,false);
                 bs.IgnoreBytes(sizeof(RakNet::MessageID));
                 bs.Read(recipientGuid);
+                natPunchThroughHandler->isOnTimeCountingDown = false;
                 this->enterStage(P2PStage_ConnectForwardServer);
             }
                 break;
             case ID_NAT_PUNCHTHROUGH_FAILED:
                 printf("NATp2p 穿透失败 \n");
+                natPunchThroughHandler->isOnTimeCountingDown = false;
                 this->enterStage(P2PStage_ConnectForwardServer);
                 break;
             case ID_NAT_PUNCHTHROUGH_SUCCEEDED:             //穿墙成功
             {
+                natPunchThroughHandler->isOnTimeCountingDown = false;
                 unsigned char weAreTheSender = packet->data[1];
                 this->enterStage(P2PStage_ConnectToPeer);                   //进入直连阶段
                 if (weAreTheSender)                                         //我方是发起方

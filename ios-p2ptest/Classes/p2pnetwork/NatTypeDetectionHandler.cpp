@@ -63,7 +63,7 @@ void NatTypeDetectionHandler::handleSinglePacket(Packet *packet) {
         }
         else                                                    //不存在NAT 这种情况基本不可能
         {
-            P2PConnectManager::getInstance()->enterStage(P2PStage_ConnetToLogicServer);        //直接进入连接服务器阶段
+            P2PConnectManager::getInstance()->enterStage(P2PStage_NATPunchThrough);        //直接进入连接服务器阶段
         }
     }
 

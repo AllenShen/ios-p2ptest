@@ -37,7 +37,8 @@ void UPNPResultCallback(bool success, unsigned short portToOpen, void *userData)
         printf("upnp 绑定失败。。。\n");
     }
     P2PConnectManager::getInstance()->uPnPHandler->isOnTimeCountingDown = false;
-    P2PConnectManager::getInstance()->enterStage(P2PStage_ConnetToLogicServer);
+    //绑定Upnp结束后 进行连接
+    P2PConnectManager::getInstance()->enterStage(P2PStage_NATPunchThrough);
 }
 
 void UPnPHandler::startCountDown() {
