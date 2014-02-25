@@ -32,14 +32,32 @@ void UPNPResultCallback(bool success, unsigned short portToOpen, void *userData)
         P2PConnectManager::getInstance()->clientNatType = NAT_TYPE_SUPPORTS_UPNP;
         printf("upbp 端口映射成功  p2p连接可能增加");
     }
-    P2PConnectManager::getInstance()->enterStage(P2PStage_ConnetToMasterServer);
+    else
+    {
+        printf("upnp 绑定失败。。。\n");
+    }
+    P2PConnectManager::getInstance()->uPnPHandler->isOnTimeCountingDown = false;
+    P2PConnectManager::getInstance()->enterStage(P2PStage_ConnetToLogicServer);
+}
+
+void UPnPHandler::startCountDown() {
+    BaseStageHandler::startCountDown();
+    this->timeMileStone = GetTimeMS() + 2500;
+}
+
+void UPnPHandler::onTimeOutHandler() {
+    if(!this->isOnTimeCountingDown || this->isTimeUp)
+        return;if(!this->isOnTimeCountingDown || this->isTimeUp)
+        return;
+    BaseStageHandler::onTimeOutHandler();
+    printf("UPNP 绑定超时...  \n");
 }
 
 void UPnPHandler::startUPnp()
 {
     DataStructures::List<RakNetSocket2* > sockets;
     RakNetStuff::rakPeer->GetSockets(sockets);
-    this->UPNPOpenAsynch(sockets[0]->GetBoundAddress().GetPort(), 2000, UPNPProgressCallback, UPNPResultCallback, 0);
+    this->UPNPOpenAsynch(sockets[0]->GetBoundAddress().GetPort(), 800, UPNPProgressCallback, UPNPResultCallback, 0);
 }
 
 RAK_THREAD_DECLARATION(UPNPOpenWorker)
@@ -47,7 +65,6 @@ RAK_THREAD_DECLARATION(UPNPOpenWorker)
     UPNPOpenWorkerArgs *args = ( UPNPOpenWorkerArgs * ) arguments;
     bool success=false;
 
-    // Behind a NAT. Try to open with UPNP to avoid doing NAT punchthrough
     struct UPNPDev * devlist = 0;
     RakNet::Time t1 = GetTime();
     devlist = upnpDiscover(args->timeout, 0, 0, 0, 0, 0);

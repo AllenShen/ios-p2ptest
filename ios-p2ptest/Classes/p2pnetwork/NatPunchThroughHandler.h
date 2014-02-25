@@ -11,15 +11,21 @@
 #include <iostream>
 #include "BaseStageHandler.h"
 #include "NatPunchthroughClient.h"
+#include "P2PConnectManager.h"
 
-class NatPunchThroughHandler : public BaseStageHandler{
+class NatPunchThroughHandler : public BaseStageHandler,public NatPunchthroughDebugInterface_Printf{
 public:
 
     NatPunchthroughClient* punchthroughClient;
 
     NatPunchThroughHandler();
+    void startPunch(RakNetGUID& guid);
 
     virtual ~NatPunchThroughHandler();
+
+    virtual void startCountDown() override;
+
+    virtual void onTimeOutHandler() override;
 };
 
 

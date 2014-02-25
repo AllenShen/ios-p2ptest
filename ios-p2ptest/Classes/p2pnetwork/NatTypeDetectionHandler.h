@@ -28,6 +28,10 @@ public:
     virtual ~NatTypeDetectionHandler();
 
     virtual void handleSinglePacket(Packet *packet) override;
+
+    virtual void startCountDown() override;
+
+    virtual void onTimeOutHandler() override;
 };
 
 

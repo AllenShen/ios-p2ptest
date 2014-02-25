@@ -10,8 +10,12 @@
 #define ios_p2ptest_RakNetDefines_h
 
 #define DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_PORT 61111
-//#define DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP "42.62.67.240"
-#define DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP "natpunch.jenkinssoftware.com"
+#define DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP "42.62.67.240"
+//#define DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP "127.0.0.1"
+//#define DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP "natpunch.jenkinssoftware.com"
+
+#define DEFAULT_UDPPROXY_PORT 61111
+#define DEFAULT_UDPPROXY_IP "42.62.67.240"
 
 //p2p连接的几个阶段
 enum P2PConnectStages
@@ -19,9 +23,11 @@ enum P2PConnectStages
     P2PStage_Initial,
     P2PStage_NATTypeDetection,                  //nat类型检测
     P2PStage_UPNP,                              //绑定upnp类型
-    P2PStage_ConnetToMasterServer,              //连接到maseter服务器
+    P2PStage_ConnetToLogicServer,              //连接到逻辑服务器
     P2PStage_NATPunchThrough,                   //对目标客户端进行穿墙连接      目标客户端需要和本机连接在一台punchthrough服务器上
     P2PStage_ConnectToPeer,                     //连接到指定GUID的目标
+    P2PStage_ConnectForwardServer,                //连接到转发服务器
+    P2PStage_ConnectProxyServer,                //连接到代理服务器
     P2PStage_ConnectEnd
 };
 

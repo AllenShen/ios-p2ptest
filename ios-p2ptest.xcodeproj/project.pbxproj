@@ -89,6 +89,7 @@
 		4D7023254536E6FB6B6368F9 /* P2PManagerFunc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702883C97F6611099E3E4D /* P2PManagerFunc.cpp */; };
 		4D70233FA964705EA95E79A4 /* HTTPConnection.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702CE9F63EB2CA8B765757 /* HTTPConnection.cpp */; };
 		4D7023433A342C3A65199333 /* TelnetTransport.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D702F24C95BBAB8FEB289C7 /* TelnetTransport.cpp */; };
+		4D70234B733B149D5AA912C7 /* UDPProxyHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D70277EB499B366E448BCAE /* UDPProxyHandler.cpp */; };
 		4D702354CBEA8B246A96E442 /* RelayPlugin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D70221D8C355F4A721D1A93 /* RelayPlugin.cpp */; };
 		4D70235B45D3D11D30CACAF3 /* cpGearJoint.c in Sources */ = {isa = PBXBuildFile; fileRef = 4D70283BE10CAA38E8819A8D /* cpGearJoint.c */; };
 		4D7023685A6AD6655356D0BE /* AttachmentLoader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D70249E7B47BF43FDF1ABA2 /* AttachmentLoader.cpp */; };
@@ -841,6 +842,7 @@
 		4D702779B535A7358A6D596A /* CCShaderCache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCShaderCache.h; path = libs/cocos2dx/shaders/CCShaderCache.h; sourceTree = "<group>"; };
 		4D70277BF67EEF709D9D22C3 /* SimpleAudioEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SimpleAudioEngine.h; path = libs/CocosDenshion/include/SimpleAudioEngine.h; sourceTree = "<group>"; };
 		4D70277D25C02368C108109E /* RakNetTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RakNetTypes.h; sourceTree = "<group>"; };
+		4D70277EB499B366E448BCAE /* UDPProxyHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UDPProxyHandler.cpp; sourceTree = "<group>"; };
 		4D702782AF7856A73F4E55A6 /* RakNetSocket2_NativeClient.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RakNetSocket2_NativeClient.cpp; sourceTree = "<group>"; };
 		4D7027846473A04E21EDBB65 /* ccGLStateCache.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = ccGLStateCache.cpp; path = libs/cocos2dx/shaders/ccGLStateCache.cpp; sourceTree = "<group>"; };
 		4D702785DFAA0B46F9E9E162 /* mat4stack.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = mat4stack.c; path = libs/cocos2dx/kazmath/src/GL/mat4stack.c; sourceTree = "<group>"; };
@@ -920,6 +922,7 @@
 		4D7028B6DE6071E57AC52425 /* GridSectorizer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GridSectorizer.cpp; sourceTree = "<group>"; };
 		4D7028BF7309FB0C09B65E8F /* CCGeometry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCGeometry.h; path = libs/cocos2dx/cocoa/CCGeometry.h; sourceTree = "<group>"; };
 		4D7028C3C262A6564BB05D1E /* CCControlPotentiometer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCControlPotentiometer.h; path = libs/extensions/GUI/CCControlExtension/CCControlPotentiometer.h; sourceTree = "<group>"; };
+		4D7028D301D4D94C8B8BEDBA /* UDPProxyHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UDPProxyHandler.h; sourceTree = "<group>"; };
 		4D7028D35E6A48B9A8740779 /* CCParticleBatchNode.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = CCParticleBatchNode.cpp; path = libs/cocos2dx/particle_nodes/CCParticleBatchNode.cpp; sourceTree = "<group>"; };
 		4D7028D4E8E37D1CA97F6B48 /* CCRenderTexture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = CCRenderTexture.h; path = libs/cocos2dx/misc_nodes/CCRenderTexture.h; sourceTree = "<group>"; };
 		4D7028D81E19FDBB4C29D01C /* quaternion.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; name = quaternion.c; path = libs/cocos2dx/kazmath/src/quaternion.c; sourceTree = "<group>"; };
@@ -2856,6 +2859,8 @@
 				4D70216D17F6D020B6C9225C /* NatTypeDetectionHandler.h */,
 				4D70282438ED22FC50FB2AB0 /* NatPunchThroughHandler.cpp */,
 				4D70283011DDD873BA231464 /* NatPunchThroughHandler.h */,
+				4D70277EB499B366E448BCAE /* UDPProxyHandler.cpp */,
+				4D7028D301D4D94C8B8BEDBA /* UDPProxyHandler.h */,
 			);
 			name = handlers;
 			sourceTree = "<group>";
@@ -3333,6 +3338,7 @@
 				4D702540E94F231B4B00C00E /* NatTypeDetectionHandler.cpp in Sources */,
 				4D702FD709CD72F0A96C10E5 /* NatPunchThroughHandler.cpp in Sources */,
 				4D7023254536E6FB6B6368F9 /* P2PManagerFunc.cpp in Sources */,
+				4D70234B733B149D5AA912C7 /* UDPProxyHandler.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

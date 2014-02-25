@@ -6,6 +6,7 @@
 
 #include "NatTypeDetectionHandler.h"
 #include "P2PConnectManager.h"
+#include "GetTime.h"
 
 NatTypeDetectionHandler::NatTypeDetectionHandler() {
     currentStage = P2PStage_NATTypeDetection;
@@ -13,14 +14,32 @@ NatTypeDetectionHandler::NatTypeDetectionHandler() {
     RakNetStuff::getInstance()->rakPeer->AttachPlugin(natTypeDetectionClient);
 }
 
+
+void NatTypeDetectionHandler::startCountDown() {
+    BaseStageHandler::startCountDown();
+    this->timeMileStone = GetTimeMS() + 3000;
+}
+
+void NatTypeDetectionHandler::onTimeOutHandler() {
+    if(!this->isOnTimeCountingDown || this->isTimeUp)
+        return;
+    BaseStageHandler::onTimeOutHandler();
+    printf("nat类型检测超时... \n");
+    P2PConnectManager::getInstance()->enterStage(P2PStage_UPNP);
+}
+
 void NatTypeDetectionHandler::startDetect(SystemAddress address)
 {
+    if(this->isTimeUp)
+        return;
     natTypeDetectionClient->DetectNATType(address);
 }
 
 void NatTypeDetectionHandler::handleSinglePacket(Packet *packet) {
-    BaseStageHandler::handleSinglePacket(packet);
 
+    if(this->isTimeUp)
+        return;
+    BaseStageHandler::handleSinglePacket(packet);
     int dataType = packet->data[0];
     if(ID_NAT_TYPE_DETECTION_RESULT == dataType)
     {
@@ -36,6 +55,7 @@ void NatTypeDetectionHandler::handleSinglePacket(Packet *packet) {
             printf("对称性的NAT,p2p 穿透直连基本宣告失败");
         }
 
+        this->isOnTimeCountingDown = false;
         P2PConnectManager::getInstance()->clientNatType = result;
         if (result != RakNet::NAT_TYPE_NONE)                    //存在NAT的情形，需要打开upnp操作
         {
@@ -43,7 +63,7 @@ void NatTypeDetectionHandler::handleSinglePacket(Packet *packet) {
         }
         else                                                    //不存在NAT 这种情况基本不可能
         {
-            P2PConnectManager::getInstance()->enterStage(P2PStage_ConnetToMasterServer);        //直接进入连接服务器阶段
+            P2PConnectManager::getInstance()->enterStage(P2PStage_ConnetToLogicServer);        //直接进入连接服务器阶段
         }
     }
 

@@ -36,6 +36,10 @@ public:
     );
 
     virtual ~UPnPHandler();
+
+    virtual void startCountDown() override;
+
+    virtual void onTimeOutHandler() override;
 };
 
 
