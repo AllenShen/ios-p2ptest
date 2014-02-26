@@ -95,7 +95,11 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
             printf("连接到代理服务器...... \n");
             break;
         case P2PStage_CountLatency:
+<<<<<<< HEAD
             printf("开始估算双方通信延迟  \n");
+=======
+            printf("开始估算双方通信延迟   \n");
+>>>>>>> f8344c2b0da84141f8cf718ca2eb9d7870b1eb67
 
         case P2PStage_ConnectEnd:
             break;
@@ -122,6 +126,10 @@ void P2PConnectManager::onConnectSuccess(PeerConnectTypes connectType) {
     //进行延迟探测
     if(this->isHost)
     {
+<<<<<<< HEAD
+=======
+        printf("<<<<<<<<<<<<<< 发送延迟探测信息  \n");
+>>>>>>> f8344c2b0da84141f8cf718ca2eb9d7870b1eb67
         BitStream bsOut;
         bsOut.Write((MessageID) ID_USER_CheckLatency);
         TimeMS packsetSendTime = GetTimeMS();

@@ -3360,6 +3360,8 @@
 					"$(inherited)",
 					"/Users/shendongdong/Documents/cocos2dxpro/ios-p2ptest/ios-p2ptest/libs/libwebsockets/ios/lib",
 					"/Users/shendongdong/Documents/cocos2dxpro/ios-p2ptest/ios-p2ptest/libs",
+					"/Users/AllenShen/codes/ios-p2ptest/ios-p2ptest/libs",
+					"/Users/AllenShen/codes/ios-p2ptest/ios-p2ptest/libs/libwebsockets/ios/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
@@ -3417,6 +3419,8 @@
 					"$(inherited)",
 					"/Users/shendongdong/Documents/cocos2dxpro/ios-p2ptest/ios-p2ptest/libs/libwebsockets/ios/lib",
 					"/Users/shendongdong/Documents/cocos2dxpro/ios-p2ptest/ios-p2ptest/libs",
+					"/Users/AllenShen/codes/ios-p2ptest/ios-p2ptest/libs",
+					"/Users/AllenShen/codes/ios-p2ptest/ios-p2ptest/libs/libwebsockets/ios/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
