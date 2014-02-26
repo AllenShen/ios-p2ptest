@@ -26,7 +26,7 @@
       <file leaf-file-name="P2PConnectManager.cpp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="89" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.6302682" vertical-offset="316" max-vertical-offset="7785">
+            <state line="43" column="128" selection-start="959" selection-end="959" vertical-scroll-proportion="0.48659003" vertical-offset="316" max-vertical-offset="7800">
               <folding />
             </state>
           </provider>
@@ -206,7 +206,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="89" selection-start="1234" selection-end="1234" vertical-scroll-proportion="0.6302682" vertical-offset="316" max-vertical-offset="7785">
+        <state line="43" column="128" selection-start="959" selection-end="959" vertical-scroll-proportion="0.48659003" vertical-offset="316" max-vertical-offset="7800">
           <folding />
         </state>
       </provider>
