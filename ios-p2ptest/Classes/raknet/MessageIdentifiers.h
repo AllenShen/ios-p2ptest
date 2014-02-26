@@ -420,7 +420,8 @@ enum DefaultMessageIDTypes
 	ID_RESERVED_9,
 
 	// For the user to use.  Start your first enumeration at this value.
-	ID_USER_PACKET_ENUM
+            ID_USER_CheckLatency,
+            ID_USER_CheckLatency_FeedBack,
 	//-------------------------------------------------------------------------------------------------------------
  
 };

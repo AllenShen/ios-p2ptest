@@ -9,6 +9,7 @@
 #include "NetworkIDManager.h"
 #include "PlayerReplica.h"
 #include "NatTypeDetectionClient.h"
+#include "P2PConnectManager.h"
 
 RakPeerInterface* RakNetStuff::rakPeer = NULL;
 PlayerReplica* RakNetStuff::playerReplica = NULL;
@@ -97,7 +98,8 @@ void RakNetStuff::init() {
     rakPeer->AttachPlugin(fullyConnectedMesh2);
 
     //连接到公共的穿墙服务器
-    ConnectionAttemptResult car = rakPeer->Connect(DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP, DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_PORT,0,0);
+    ConnectionAttemptResult car = rakPeer->Connect(P2PConnectManager::getInstance()->natCompleteServerIp.c_str(),
+            P2PConnectManager::getInstance()->NatCompleteServetPort,0,0);
 //    ConnectionAttemptResult car = rakPeer->Connect("172.26.192.159", DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_PORT,0,0);
     RakAssert(car==CONNECTION_ATTEMPT_STARTED);
 

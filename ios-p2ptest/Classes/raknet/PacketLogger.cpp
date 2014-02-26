@@ -252,10 +252,10 @@ void PacketLogger::SetPrintAcks(bool print)
 }
 const char* PacketLogger::BaseIDTOString(unsigned char Id)
 {
-	if (Id >= ID_USER_PACKET_ENUM)
+	if (Id >= ID_USER_CheckLatency)
         return 0;
 
-	const char *IDTable[((int)ID_USER_PACKET_ENUM)+1]=
+	const char *IDTable[((int) ID_USER_CheckLatency)+1]=
 	{
 		"ID_CONNECTED_PING",
 		"ID_UNCONNECTED_PING",

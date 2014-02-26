@@ -17,12 +17,16 @@
 #include "NatPunchThroughHandler.h"
 #include "UDPProxyHandler.h"
 
+using namespace std;
+
 enum PeerConnectTypes
 {
     PeerConnectType_Node,
     PeerConnectType_p2p = 1,
     PeerConnectType_proxy
 };
+
+class NatPunchThroughHandler;
 
 class P2PConnectManager {
 
@@ -48,13 +52,19 @@ public:
 
     PeerConnectTypes connectType;                               //端端之间的连接类型
 
+    string natCompleteServerIp;
+    unsigned short NatCompleteServetPort;
+
+    string proxyServerIp;
+    unsigned short proxyServerPort;
+
     SystemAddress NATCompleteServerAddress;                         //Nat complete server地址 包含类型检测 nat穿透
     SystemAddress ProxyServerArrress;                               //代理服务器地址
 
     STATIC_GET_SINGLEINSTANCE(P2PConnectManager);
     RakNet::TimeMS whenOutputMessageStarted;
 
-    bool isConnectedToNATPunchthroughServer;
+    int averageLatency;                                         //平均的网络延迟时间
 
     void initInfo();
     void enterStage(P2PConnectStages stage,Packet * packet = NULL);

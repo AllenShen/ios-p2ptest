@@ -17,7 +17,7 @@ NatTypeDetectionHandler::NatTypeDetectionHandler() {
 
 void NatTypeDetectionHandler::startCountDown() {
     BaseStageHandler::startCountDown();
-    this->timeMileStone = GetTimeMS() + 3000;
+    this->timeMileStone = GetTimeMS() + 5000;
 }
 
 void NatTypeDetectionHandler::onTimeOutHandler() {

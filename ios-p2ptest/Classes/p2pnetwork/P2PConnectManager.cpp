@@ -33,13 +33,23 @@ void P2PConnectManager::initInfo() {
     this->peerGuid.FromString("");
 
     clientNatType = NAT_TYPE_UNKNOWN;
-    NATCompleteServerAddress = SystemAddress(DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP,DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_PORT);
-    ProxyServerArrress = SystemAddress(DEFAULT_UDPPROXY_IP,DEFAULT_UDPPROXY_PORT);
+
+    this->natCompleteServerIp = DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP;
+    this->NatCompleteServetPort = DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_PORT;
+
+    this->proxyServerIp = DEFAULT_UDPPROXY_IP;
+    this->proxyServerPort = DEFAULT_UDPPROXY_PORT;
+
+    NATCompleteServerAddress = SystemAddress(natCompleteServerIp.c_str(),NatCompleteServetPort);
+    ProxyServerArrress = SystemAddress(proxyServerIp.c_str(),proxyServerPort);
 
     natTypeDetectionHandler = new NatTypeDetectionHandler();
     uPnPHandler = new UPnPHandler();
     natPunchThroughHandler = new NatPunchThroughHandler();
     proxyHandler = new UDPProxyHandler();
+
+    this->peerGuid.FromString("1393396402187938");
+    this->isHost = false;
 
     enterStage(P2PStage_Initial, NULL);
 
@@ -57,26 +67,34 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
             break;
         case P2PStage_UPNP:
             printf("开始绑定UPnP...  \n");
-            isConnectedToNATPunchthroughServer = true;
             this->uPnPHandler->startUPnp();
             this->uPnPHandler->handleSinglePacket(packet);
             break;
         case P2PStage_NATPunchThrough:
-            printf("开始进行NAT穿透...  \n");
             natPunchThroughHandler->startCountDown();
             if(this->isHost)                                    //我方发起发，主动发出穿墙请求
             {
+                printf("开始进行NAT穿透...  \n");
                 natPunchThroughHandler->startPunch(peerGuid);
+            }
+            else
+            {
+                printf("等待小伙伴进行NAT穿透。。。。 \n");
             }
             break;
         case P2PStage_ConnectToPeer:                                        //nat穿透成功  连接peer
             break;
         case P2PStage_ConnectForwardServer:
+            natPunchThroughHandler->isOnTimeCountingDown = false;
             printf("连接到代理服务器。。。。。。 \n");
             this->proxyHandler->startConnectToProxyServer();
             break;
         case P2PStage_ConnectProxyServer:
             printf("连接到代理服务器...... \n");
+            break;
+        case P2PStage_CountLatency:
+            printf("开始估算双方通信延迟");
+
         case P2PStage_ConnectEnd:
             break;
     }
@@ -85,10 +103,8 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
 void P2PConnectManager::startNetWork() {
     RakNetStuff::getInstance();
     this->initInfo();
-    RakNet::ConnectionAttemptResult car = RakNetStuff::rakPeer->Connect(DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP,
-            DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_PORT,0,0, NULL,0,12,500,4000);
-    printf("connecting to natcomplete server %s, port %d \n",DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP,
-            DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_PORT);
+    RakNet::ConnectionAttemptResult car = RakNetStuff::rakPeer->Connect(natCompleteServerIp.c_str(),
+            NatCompleteServetPort,0,0, NULL,0,12,500,4000);
     if(car == INVALID_PARAMETER || car == CANNOT_RESOLVE_DOMAIN_NAME || car == SECURITY_INITIALIZATION_FAILED)
     {
         printf("--------------- connect to punch server error -----------------\n");
@@ -99,13 +115,20 @@ void P2PConnectManager::onConnectSuccess(PeerConnectTypes connectType) {
     this->isConnectedTpPeer = true;
     this->connectType = connectType;
 
-    //发送测试消息给peer
-    BitStream bsOut;
-    bsOut.Write((MessageID)ID_USER_PACKET_ENUM);
-    RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,peerGuid,false);
+    this->enterStage(P2PStage_CountLatency);
+
+    //进行延迟探测
+    if(this->isHost)
+    {
+        printf("<<<<<<<<<<<<<< 发送延迟探测信息  ");
+        BitStream bsOut;
+        bsOut.Write((MessageID) ID_USER_CheckLatency);
+        RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->peerGuid,false);
+    }
 }
 
 void P2PConnectManager::onConnectFailed() {
+    proxyHandler->isOnTimeCountingDown = false;
     printf("连接建立失败，请检查网络设置。。。。。。");
     return;
 }
@@ -154,13 +177,14 @@ void P2PConnectManager::UpdateRakNet()
                     //连接服务器
                     printf("ID_CONNECTION_REQUEST_ACCEPTED to %s with GUID %s\n", packet->systemAddress.ToString(true), packet->guid.ToString());
                     printf("My external address is %s\n", RakNetStuff::rakPeer->GetExternalID(packet->systemAddress).ToString(true));
+                    printf("My GUID is %s\n", RakNetStuff::rakPeer->GetMyGUID().ToString());
                     enterStage(P2PStage_NATTypeDetection,packet);
                 }
                 else if(this->curConnectStage == P2PStage_ConnectToPeer)
                 {
                     //peer to peer 连接成功
                     printf("连接到小伙伴 %s with GUID: %s 成功\n",packet->systemAddress.ToString(true), packet->guid.ToString());
-
+                    natPunchThroughHandler->isOnTimeCountingDown = false;
                     this->onConnectSuccess(PeerConnectType_p2p);
                 }
                 else if(this->curConnectStage == P2PStage_ConnectForwardServer)              //连接上proxy服务器
@@ -172,6 +196,7 @@ void P2PConnectManager::UpdateRakNet()
                 }
                 else if(this->curConnectStage == P2PStage_ConnectProxyServer)               //连接到代理服务器成功
                 {
+                    proxyHandler->isOnTimeCountingDown = false;
                     this->onConnectSuccess(PeerConnectType_proxy);                      //通过代理连接成功
                 }
                 break;
@@ -182,6 +207,7 @@ void P2PConnectManager::UpdateRakNet()
                 {
                     printf("收到来自小伙伴 %s with GUID: %s 的连接请求\n",
                             packet->systemAddress.ToString(true), packet->guid.ToString());
+                    natPunchThroughHandler->isOnTimeCountingDown = false;
                     this->onConnectSuccess(PeerConnectType_p2p);
                 }
                 else
@@ -228,13 +254,11 @@ void P2PConnectManager::UpdateRakNet()
                 RakNet::BitStream bs(packet->data,packet->length,false);
                 bs.IgnoreBytes(sizeof(RakNet::MessageID));
                 bs.Read(recipientGuid);
-                natPunchThroughHandler->isOnTimeCountingDown = false;
                 this->enterStage(P2PStage_ConnectForwardServer);
             }
                 break;
             case ID_NAT_PUNCHTHROUGH_FAILED:
                 printf("NATp2p 穿透失败 \n");
-                natPunchThroughHandler->isOnTimeCountingDown = false;
                 this->enterStage(P2PStage_ConnectForwardServer);
                 break;
             case ID_NAT_PUNCHTHROUGH_SUCCEEDED:             //穿墙成功
@@ -256,12 +280,36 @@ void P2PConnectManager::UpdateRakNet()
                 break;
 #pragma NAT 穿透阶段结束
 
-#pragma 连接出错_Start
+#pragma 连接出错处理_Start
             case ID_DISCONNECTION_NOTIFICATION:
             case ID_CONNECTION_LOST:
             {
                 P2PManagerFunc::printPacketMessages(packet);
-                printf("无法连接master服务器");
+
+                //从穿墙服务器断开
+                if(strcmp(packet->systemAddress.ToString(false),natCompleteServerIp.c_str())==0)
+                {
+                    printf("punchthrough 服务器断开连接  \n");
+                    if(this->curConnectStage == P2PStage_NATPunchThrough)
+                    {
+                        printf("跳过punch through 服务器     \n");
+                        this->enterStage(P2PStage_ConnectForwardServer);
+                    }
+                }
+                else if(strcmp(packet->systemAddress.ToString(false),proxyServerIp.c_str())==0)
+                {
+                    printf("proxy 服务器断开连接  \n");
+                    if(this->curConnectStage == P2PStage_ConnectProxyServer)
+                    {
+                        printf("proxy 服务器断开连接 \n");
+                        this->onConnectFailed();
+                    }
+                }
+                else
+                {
+                    printf("与 %s 的连接断开，pk失败 .... \n",packet->systemAddress.ToString(false));
+                }
+
             }
                 break;
 #pragma 连接出错_End
@@ -355,9 +403,27 @@ void P2PConnectManager::UpdateRakNet()
                 }
                 break;
 
-            case ID_USER_PACKET_ENUM:           //收到peer发来的信息
-                printf("+++++++++++++++  收到小伙伴发来的请求信息  +++++++++++++++++\n");
+#pragma 延迟探测信息_Start
+
+            case ID_USER_CheckLatency:           //收到peer发来的信息
+            {
+                printf("<<<<<<<<<<<<<<<  收到延迟探测信息  \n");
+
+                BitStream bsOut;
+                bsOut.Write((MessageID) ID_USER_CheckLatency_FeedBack);
+                RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->peerGuid,false);
+
                 break;
+            }
+            case ID_USER_CheckLatency_FeedBack:           //收到peer发来的信息
+            {
+                printf(">>>>>>>>>>>>>>>  收到延迟探测信息  \n");
+                break;
+            }
+
+
+#pragma 延迟探测信息_End
+
         }
     }
 

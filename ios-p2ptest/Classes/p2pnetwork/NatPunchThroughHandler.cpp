@@ -22,14 +22,14 @@ void NatPunchThroughHandler::startPunch(RakNetGUID& guid) {
 
 void NatPunchThroughHandler::startCountDown() {
     BaseStageHandler::startCountDown();
-    this->timeMileStone = GetTimeMS() + 2000;
+    this->timeMileStone = GetTimeMS() + 5000000;
 }
 
 void NatPunchThroughHandler::onTimeOutHandler() {
     if(!this->isOnTimeCountingDown || this->isTimeUp)
         return;
     BaseStageHandler::onTimeOutHandler();
-    printf("Nat 穿墙执行成功");
+    printf("Nat 穿墙执行超时");
 }
 
 NatPunchThroughHandler::~NatPunchThroughHandler() {
