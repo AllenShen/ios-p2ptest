@@ -50,8 +50,8 @@ void P2PConnectManager::initInfo() {
     natPunchThroughHandler = new NatPunchThroughHandler();
     proxyHandler = new UDPProxyHandler();
 
-    this->peerGuid.FromString("");
-    this->isHost = false;
+    this->peerGuid.FromString("18446744072693985636");
+    this->isHost = true;
 
     enterStage(P2PStage_Initial, NULL);
 
@@ -447,6 +447,7 @@ void P2PConnectManager::UpdateRakNet()
                 latencyCheckIndex++;
 
                 averageLatency += latencyTime;
+                printf("单次延迟事件为: %d   \n",latencyTime);
 
                 if(SINGLE_MAXLATENCY_CHECKTIME == latencyCheckIndex)
                 {
@@ -456,8 +457,8 @@ void P2PConnectManager::UpdateRakNet()
                     RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->peerGuid,false);
                     if(!this->isHost)
                     {
-                        printf("-----------平均延时为 %d 等待正式游戏逻辑 \n",this->averageLatency);
                         this->averageLatency = this->averageLatency / 2 / SINGLE_MAXLATENCY_CHECKTIME;
+                        printf("-----------平均延时为 %d 等待正式游戏逻辑 \n",this->averageLatency);
                     }
                 }
                 else                            //继续发送延迟测试信息
