@@ -95,7 +95,7 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
             printf("连接到代理服务器...... \n");
             break;
         case P2PStage_CountLatency:
-            printf("开始估算双方通信延迟");
+            printf("开始估算双方通信延迟   \n");
 
         case P2PStage_ConnectEnd:
             break;
@@ -122,7 +122,7 @@ void P2PConnectManager::onConnectSuccess(PeerConnectTypes connectType) {
     //进行延迟探测
     if(this->isHost)
     {
-        printf("<<<<<<<<<<<<<< 发送延迟探测信息  ");
+        printf("<<<<<<<<<<<<<< 发送延迟探测信息  \n");
         BitStream bsOut;
         bsOut.Write((MessageID) ID_USER_CheckLatency);
         TimeMS packsetSendTime = GetTimeMS();
@@ -133,7 +133,7 @@ void P2PConnectManager::onConnectSuccess(PeerConnectTypes connectType) {
 
 void P2PConnectManager::onConnectFailed() {
     proxyHandler->isOnTimeCountingDown = false;
-    printf("连接建立失败，请检查网络设置。。。。。。");
+    printf("连接建立失败，请检查网络设置。。。。。。 \n");
     return;
 }
 
@@ -416,7 +416,12 @@ void P2PConnectManager::UpdateRakNet()
                 RakNet::BitStream bs(packet->data,packet->length,false);
                 bs.IgnoreBytes(sizeof(RakNet::MessageID));
                 bs.Read(sendTime);
-
+                
+                if(!this->isHost)
+                {
+                    this->peerGuid = packet->guid;
+                }
+                
                 BitStream bsOut;
                 bsOut.Write((MessageID) ID_USER_CheckLatency_FeedBack);
                 bsOut.Write(sendTime);
