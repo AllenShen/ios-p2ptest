@@ -50,7 +50,7 @@ void P2PConnectManager::initInfo() {
     natPunchThroughHandler = new NatPunchThroughHandler();
     proxyHandler = new UDPProxyHandler();
 
-    this->peerGuid.FromString("18446744072693985636");
+    this->peerGuid.FromString("18446744071878917161");
     this->isHost = true;
 
     enterStage(P2PStage_Initial, NULL);
@@ -81,6 +81,7 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
             }
             else
             {
+                latencyCheckIndex = 0;
                 printf("等待小伙伴进行NAT穿透。。。。 \n");
             }
             break;
@@ -96,7 +97,7 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
             break;
         case P2PStage_CountLatency:
             printf("开始估算双方通信延迟  \n");
-
+            latencyCheckIndex = 0;
         case P2PStage_ConnectEnd:
             break;
     }
@@ -256,7 +257,7 @@ void P2PConnectManager::UpdateRakNet()
             case ID_NAT_TARGET_UNRESPONSIVE:
             case ID_NAT_CONNECTION_TO_TARGET_LOST:
             {
-                printf("穿墙阶段连接信息丢失");
+                printf("穿墙阶段连接信息丢失  \n");
                 RakNet::RakNetGUID recipientGuid;
                 RakNet::BitStream bs(packet->data,packet->length,false);
                 bs.IgnoreBytes(sizeof(RakNet::MessageID));
@@ -482,7 +483,7 @@ void P2PConnectManager::UpdateRakNet()
                 printf("收到对方peer的游戏延迟反馈信息 \n");
                 if(this->isHost)                //收到被动方的延迟信息，可以进入开始游戏阶段
                 {
-                    this->averageLatency = (this->averageLatency + peerlatency) / 2 / SINGLE_MAXLATENCY_CHECKTIME;
+                    this->averageLatency = peerlatency / 2 / SINGLE_MAXLATENCY_CHECKTIME;
                     printf("++++++++++平均延时为 %d  进入正式游戏逻辑 \n",this->averageLatency);
                 }
                 else                            //收到主动发的延迟信息，从我方开始测试

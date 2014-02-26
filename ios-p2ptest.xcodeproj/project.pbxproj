@@ -2919,6 +2919,11 @@
 		4D70268F7CEC763CAEABEE77 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				TargetAttributes = {
+					4D702D5502D8D21B12538B63 = {
+						DevelopmentTeam = 9E7762HRG9;
+					};
+				};
 			};
 			buildConfigurationList = 4D7024C251C4157C5B716DB7 /* Build configuration list for PBXProject "ios-p2ptest" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -3349,6 +3354,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: SHEN DONGDONG (MQ834ZZFBZ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: SHEN DONGDONG (MQ834ZZFBZ)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3370,6 +3377,7 @@
 					"-websockets",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "95C7860D-5457-466D-B59E-39824625DFEF";
 				USER_HEADER_SEARCH_PATHS = "\"ios-p2ptest/libs/Chipmunk/include/chipmunk\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3409,6 +3417,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ios-p2ptest/Prefix.pch";
@@ -3429,6 +3439,7 @@
 					"-websockets",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"ios-p2ptest/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
