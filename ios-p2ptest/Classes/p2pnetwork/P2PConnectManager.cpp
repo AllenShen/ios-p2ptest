@@ -50,8 +50,8 @@ void P2PConnectManager::initInfo() {
     natPunchThroughHandler = new NatPunchThroughHandler();
     proxyHandler = new UDPProxyHandler();
 
-    this->peerGuid.FromString("965173710");
-    this->isHost = true;
+    this->peerGuid.FromString("");
+    this->isHost = false;
 
     enterStage(P2PStage_Initial, NULL);
 
