@@ -50,8 +50,8 @@ void P2PConnectManager::initInfo() {
     natPunchThroughHandler = new NatPunchThroughHandler();
     proxyHandler = new UDPProxyHandler();
 
-    this->peerGuid.FromString("1393396402187938");
-    this->isHost = false;
+    this->peerGuid.FromString("965173710");
+    this->isHost = true;
 
     enterStage(P2PStage_Initial, NULL);
 
@@ -95,7 +95,7 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
             printf("连接到代理服务器...... \n");
             break;
         case P2PStage_CountLatency:
-            printf("开始估算双方通信延迟");
+            printf("开始估算双方通信延迟  \n");
 
         case P2PStage_ConnectEnd:
             break;
@@ -122,7 +122,6 @@ void P2PConnectManager::onConnectSuccess(PeerConnectTypes connectType) {
     //进行延迟探测
     if(this->isHost)
     {
-        printf("<<<<<<<<<<<<<< 发送延迟探测信息  ");
         BitStream bsOut;
         bsOut.Write((MessageID) ID_USER_CheckLatency);
         TimeMS packsetSendTime = GetTimeMS();
@@ -242,6 +241,11 @@ void P2PConnectManager::UpdateRakNet()
                 {
                     printf("NatCompleteServer 连接失败, 不能建立p2p连接 \n");
                     this->enterStage(P2PStage_ConnectForwardServer);
+                }
+                else if(this->curConnectStage == P2PStage_ConnectForwardServer || this->curConnectStage == P2PStage_ConnectProxyServer)
+                {
+                    proxyHandler->isOnTimeCountingDown = false;
+                    this->onConnectFailed();
                 }
             }
                 break;
@@ -410,7 +414,7 @@ void P2PConnectManager::UpdateRakNet()
 
             case ID_USER_CheckLatency:           //收到peer发来的信息
             {
-                printf("<<<<<<<<<<<<<<<  收到延迟探测信息  \n");
+                printf(">>>>>>>>>>>>>>>>  收到延迟探测信息  \n");
 
                 TimeMS sendTime;
                 RakNet::BitStream bs(packet->data,packet->length,false);
@@ -421,7 +425,6 @@ void P2PConnectManager::UpdateRakNet()
                 bsOut.Write((MessageID) ID_USER_CheckLatency_FeedBack);
                 bsOut.Write(sendTime);
                 RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->peerGuid,false);
-
                 break;
             }
             case ID_USER_CheckLatency_FeedBack:           //收到peer发来的信息
@@ -448,6 +451,7 @@ void P2PConnectManager::UpdateRakNet()
                     RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->peerGuid,false);
                     if(!this->isHost)
                     {
+                        printf("-----------平均延时为 %d 等待正式游戏逻辑 \n",this->averageLatency);
                         this->averageLatency = this->averageLatency / 2 / SINGLE_MAXLATENCY_CHECKTIME;
                     }
                 }
@@ -473,7 +477,7 @@ void P2PConnectManager::UpdateRakNet()
                 if(this->isHost)                //收到被动方的延迟信息，可以进入开始游戏阶段
                 {
                     this->averageLatency = (this->averageLatency + peerlatency) / 2 / SINGLE_MAXLATENCY_CHECKTIME;
-                    printf("进入正式游戏逻辑");
+                    printf("++++++++++平均延时为 %d  进入正式游戏逻辑 \n",this->averageLatency);
                 }
                 else                            //收到主动发的延迟信息，从我方开始测试
                 {
