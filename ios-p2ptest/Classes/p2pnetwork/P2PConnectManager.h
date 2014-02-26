@@ -64,6 +64,7 @@ public:
     STATIC_GET_SINGLEINSTANCE(P2PConnectManager);
     RakNet::TimeMS whenOutputMessageStarted;
 
+    int latencyCheckIndex;
     int averageLatency;                                         //平均的网络延迟时间
 
     void initInfo();

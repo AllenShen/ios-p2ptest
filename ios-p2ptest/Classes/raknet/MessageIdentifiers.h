@@ -420,8 +420,10 @@ enum DefaultMessageIDTypes
 	ID_RESERVED_9,
 
 	// For the user to use.  Start your first enumeration at this value.
-            ID_USER_CheckLatency,
-            ID_USER_CheckLatency_FeedBack,
+    ID_USER_CheckLatency,
+    ID_USER_CheckLatency_FeedBack,                          //收到测试延迟消息的反馈信息
+    ID_USER_NotifySelfLatency,                          //收到测试延迟消息的反馈信息
+
 	//-------------------------------------------------------------------------------------------------------------
  
 };

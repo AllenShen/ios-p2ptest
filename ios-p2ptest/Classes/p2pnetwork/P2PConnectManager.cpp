@@ -19,7 +19,9 @@ proxyHandler(NULL),
 isConnectedTpPeer(false),
 peerGuid(0),
 isHost(false),
-connectType(PeerConnectType_Node)
+connectType(PeerConnectType_Node),
+latencyCheckIndex(0),
+averageLatency(0)
 {
 }
 
@@ -123,6 +125,8 @@ void P2PConnectManager::onConnectSuccess(PeerConnectTypes connectType) {
         printf("<<<<<<<<<<<<<< 发送延迟探测信息  ");
         BitStream bsOut;
         bsOut.Write((MessageID) ID_USER_CheckLatency);
+        TimeMS packsetSendTime = GetTimeMS();
+        bsOut.Write(packsetSendTime);
         RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->peerGuid,false);
     }
 }
@@ -163,7 +167,6 @@ void P2PConnectManager::UpdateRakNet()
 {
     RakNet::Packet *packet;
     RakNet::TimeMS curTime = GetTimeMS();
-    RakNet::RakString targetName;
     for (packet= RakNetStuff::rakPeer->Receive(); packet; RakNetStuff::rakPeer->DeallocatePacket(packet), packet=RakNetStuff::rakPeer->Receive())
     {
         int retCode = packet->data[0];
@@ -255,6 +258,15 @@ void P2PConnectManager::UpdateRakNet()
                 bs.IgnoreBytes(sizeof(RakNet::MessageID));
                 bs.Read(recipientGuid);
                 this->enterStage(P2PStage_ConnectForwardServer);
+            }
+                break;
+            case ID_NAT_ALREADY_IN_PROGRESS:                                //NAT Punch Through 进行中
+            {
+                RakNet::RakNetGUID recipientGuid;
+                RakNet::BitStream bs(packet->data,packet->length,false);
+                bs.IgnoreBytes(sizeof(RakNet::MessageID));
+                bs.Read(recipientGuid);
+                printf("正在向 %s 穿墙中 ....... ",recipientGuid.ToString());
             }
                 break;
             case ID_NAT_PUNCHTHROUGH_FAILED:
@@ -383,16 +395,7 @@ void P2PConnectManager::UpdateRakNet()
                 RakNetStuff::cloudClient->DeallocateWithDefaultAllocator(&cloudQueryResult);
             }
                 break;
-            case ID_NAT_ALREADY_IN_PROGRESS:
-            {
-                RakNet::RakNetGUID recipientGuid;
-                RakNet::BitStream bs(packet->data,packet->length,false);
-                bs.IgnoreBytes(sizeof(RakNet::MessageID));
-                bs.Read(recipientGuid);
-                targetName=recipientGuid.ToString();
-//                PushMessage(RakNet::RakString("%s","NAT punchthrough to ") + targetName + RakNet::RakString("%s"," in progress (skipping)."));
-            }
-                break;
+
             case ID_ADVERTISE_SYSTEM:
                 if (packet->guid!=RakNetStuff::rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS))
                 {
@@ -409,18 +412,82 @@ void P2PConnectManager::UpdateRakNet()
             {
                 printf("<<<<<<<<<<<<<<<  收到延迟探测信息  \n");
 
+                TimeMS sendTime;
+                RakNet::BitStream bs(packet->data,packet->length,false);
+                bs.IgnoreBytes(sizeof(RakNet::MessageID));
+                bs.Read(sendTime);
+
                 BitStream bsOut;
                 bsOut.Write((MessageID) ID_USER_CheckLatency_FeedBack);
+                bsOut.Write(sendTime);
                 RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->peerGuid,false);
 
                 break;
             }
             case ID_USER_CheckLatency_FeedBack:           //收到peer发来的信息
             {
-                printf(">>>>>>>>>>>>>>>  收到延迟探测信息  \n");
+                printf(">>>>>>>>>>>>>>>  收到延迟探测反馈信息  \n");
+
+                TimeMS curtime = GetTimeMS();
+
+                TimeMS sendTime;
+                RakNet::BitStream bs(packet->data,packet->length,false);
+                bs.IgnoreBytes(sizeof(RakNet::MessageID));
+                bs.Read(sendTime);
+
+                uint32_t latencyTime = curtime - sendTime;              //延迟时间
+                latencyCheckIndex++;
+
+                averageLatency += latencyTime;
+
+                if(SINGLE_MAXLATENCY_CHECKTIME == latencyCheckIndex)
+                {
+                    BitStream bsOut;
+                    bsOut.Write((MessageID) ID_USER_NotifySelfLatency);
+                    bsOut.Write(averageLatency);
+                    RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->peerGuid,false);
+                    if(!this->isHost)
+                    {
+                        this->averageLatency = this->averageLatency / 2 / SINGLE_MAXLATENCY_CHECKTIME;
+                    }
+                }
+                else                            //继续发送延迟测试信息
+                {
+                    BitStream bsOut;
+                    bsOut.Write((MessageID) ID_USER_CheckLatency);
+                    TimeMS packsetSendTime = GetTimeMS();
+                    bsOut.Write(packsetSendTime);
+                    RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->peerGuid,false);
+                }
+
                 break;
             }
+            case ID_USER_NotifySelfLatency:
+            {
+                uint32_t peerlatency;
+                RakNet::BitStream bs(packet->data,packet->length,false);
+                bs.IgnoreBytes(sizeof(RakNet::MessageID));
+                bs.Read(peerlatency);
 
+                printf("收到对方peer的游戏延迟反馈信息 \n");
+                if(this->isHost)                //收到被动方的延迟信息，可以进入开始游戏阶段
+                {
+                    this->averageLatency = (this->averageLatency + peerlatency) / 2 / SINGLE_MAXLATENCY_CHECKTIME;
+                    printf("进入正式游戏逻辑");
+                }
+                else                            //收到主动发的延迟信息，从我方开始测试
+                {
+                    this->averageLatency = peerlatency;
+
+                    //我方发送延迟探测信息
+                    BitStream bsOut;
+                    bsOut.Write((MessageID) ID_USER_CheckLatency);
+                    TimeMS packsetSendTime = GetTimeMS();
+                    bsOut.Write(packsetSendTime);
+                    RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->peerGuid,false);
+                }
+                break;
+            }
 
 #pragma 延迟探测信息_End
 
