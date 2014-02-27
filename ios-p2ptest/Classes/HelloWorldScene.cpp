@@ -5,6 +5,8 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+HelloWorld* HelloWorld::instance = NULL;
+
 CCScene* HelloWorld::scene()
 {
     // 'scene' is an autorelease object
@@ -23,6 +25,7 @@ CCScene* HelloWorld::scene()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
+    instance = this;
     //////////////////////////////
     // 1. super init first
     if ( !CCLayer::init() )
@@ -40,7 +43,8 @@ bool HelloWorld::init()
                                         "CloseSelected.png",
                                         this,
                                         menu_selector(HelloWorld::menuCloseCallback) );
-    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 20, 20) );
+    pCloseItem->setScale(3);
+    pCloseItem->setPosition( ccp(CCDirector::sharedDirector()->getWinSize().width - 200, 20) );
 
     // create menu, it's an autorelease object
     CCMenu* pMenu = CCMenu::create(pCloseItem, NULL);
@@ -52,7 +56,7 @@ bool HelloWorld::init()
 
     // add a label shows "Hello World"
     // create and initialize a label
-    CCLabelTTF* pLabel = CCLabelTTF::create("Hello World", "Thonburi", 34);
+    pLabel = CCLabelTTF::create("Hello World", "Thonburi", 34);
 
     // ask director the window size
     CCSize size = CCDirector::sharedDirector()->getWinSize();
@@ -77,6 +81,7 @@ bool HelloWorld::init()
 
 void HelloWorld::menuCloseCallback(CCObject* pSender)
 {
+    this->unscheduleUpdate();
     P2PConnectManager::getInstance()->startNetWork();
     this->scheduleUpdate();
     
