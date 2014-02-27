@@ -51,7 +51,7 @@ void P2PConnectManager::initInfo() {
     proxyHandler = new UDPProxyHandler();
 
     this->peerGuid.FromString("18446744071878917161");
-    this->isHost = true;
+    this->isHost = false;
 
     enterStage(P2PStage_Initial, NULL);
 

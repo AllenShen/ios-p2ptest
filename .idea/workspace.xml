@@ -26,7 +26,7 @@
       <file leaf-file-name="P2PConnectManager.cpp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="43" column="128" selection-start="959" selection-end="959" vertical-scroll-proportion="0.48659003" vertical-offset="316" max-vertical-offset="7800">
+            <state line="53" column="25" selection-start="1417" selection-end="1417" vertical-scroll-proportion="0.71647507" vertical-offset="421" max-vertical-offset="7890">
               <folding />
             </state>
           </provider>
@@ -35,7 +35,7 @@
       <file leaf-file-name="P2PConnectManager.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="51" column="71" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="1335">
+            <state line="51" column="0" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="1335">
               <folding />
             </state>
           </provider>
@@ -199,14 +199,14 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="51" column="71" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="1335">
+        <state line="51" column="0" selection-start="985" selection-end="985" vertical-scroll-proportion="0.0" vertical-offset="425" max-vertical-offset="1335">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="43" column="128" selection-start="959" selection-end="959" vertical-scroll-proportion="0.48659003" vertical-offset="316" max-vertical-offset="7800">
+        <state line="53" column="25" selection-start="1417" selection-end="1417" vertical-scroll-proportion="0.71647507" vertical-offset="421" max-vertical-offset="7890">
           <folding />
         </state>
       </provider>

@@ -3377,7 +3377,7 @@
 					"-websockets",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "95C7860D-5457-466D-B59E-39824625DFEF";
+				PROVISIONING_PROFILE = "9E859DA8-9D73-4A51-B290-CE62378C9BB5";
 				USER_HEADER_SEARCH_PATHS = "\"ios-p2ptest/libs/Chipmunk/include/chipmunk\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3417,7 +3417,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: SHEN DONGDONG (MQ834ZZFBZ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3439,7 +3439,7 @@
 					"-websockets",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9E859DA8-9D73-4A51-B290-CE62378C9BB5";
 				USER_HEADER_SEARCH_PATHS = "\"ios-p2ptest/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
