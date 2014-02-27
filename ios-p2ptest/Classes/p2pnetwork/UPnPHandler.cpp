@@ -58,7 +58,7 @@ void UPnPHandler::startUPnp()
 {
     DataStructures::List<RakNetSocket2* > sockets;
     RakNetStuff::rakPeer->GetSockets(sockets);
-    this->UPNPOpenAsynch(sockets[0]->GetBoundAddress().GetPort(), 800, UPNPProgressCallback, UPNPResultCallback, 0);
+    this->UPNPOpenAsynch(sockets[0]->GetBoundAddress().GetPort(), 4000, UPNPProgressCallback, UPNPResultCallback, 0);
 }
 
 RAK_THREAD_DECLARATION(UPNPOpenWorker)

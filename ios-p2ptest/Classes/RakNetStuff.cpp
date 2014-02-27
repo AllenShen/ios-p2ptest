@@ -15,8 +15,6 @@ RakPeerInterface* RakNetStuff::rakPeer = NULL;
 PlayerReplica* RakNetStuff::playerReplica = NULL;
 NetworkIDManager* RakNetStuff::networkIDManager = NULL;
 ReplicaManager3Irrlicht* RakNetStuff::replicaManager3 = NULL;
-NatTypeDetectionClient* RakNetStuff::natTypeDetectionClient = NULL;
-NatPunchthroughClient* RakNetStuff::natPunchthroughClient = NULL;
 CloudClient* RakNetStuff::cloudClient = NULL;
 FullyConnectedMesh2* RakNetStuff::fullyConnectedMesh2 = NULL;
 
@@ -31,10 +29,6 @@ void RakNetStuff::clearInfo()
         return;
     if(RakNetStuff::replicaManager3)
         rakPeer->DetachPlugin(RakNetStuff::replicaManager3);
-    if(RakNetStuff::natTypeDetectionClient)
-        rakPeer->DetachPlugin(RakNetStuff::natTypeDetectionClient);
-    if(RakNetStuff::natPunchthroughClient)
-        rakPeer->DetachPlugin(RakNetStuff::natPunchthroughClient);
     if(RakNetStuff::cloudClient)
         rakPeer->DetachPlugin(RakNetStuff::cloudClient);
     if(RakNetStuff::fullyConnectedMesh2)
@@ -76,15 +70,6 @@ void RakNetStuff::init() {
     // Create and register the network object that represents the player
     playerReplica = new PlayerReplica;
     replicaManager3->Reference(playerReplica);
-
-    //NAT类型检测
-    natTypeDetectionClient = new NatTypeDetectionClient;
-    rakPeer->AttachPlugin(natTypeDetectionClient);
-//    natTypeDetectionClient->DetectNATType();
-
-    //NAT穿透
-    natPunchthroughClient=new NatPunchthroughClient;
-    rakPeer->AttachPlugin(natPunchthroughClient);
 
     // Uploads game instance, basically client half of a directory server
     // Server code is in NATCompleteServer sample

@@ -29,9 +29,15 @@ void NatPunchThroughHandler::onTimeOutHandler() {
     if(!this->isOnTimeCountingDown || this->isTimeUp)
         return;
     BaseStageHandler::onTimeOutHandler();
-    printf("Nat 穿墙执行超时");
+    printf("Nat 穿墙执行超时 \n");
 }
 
 NatPunchThroughHandler::~NatPunchThroughHandler() {
 
+}
+
+void NatPunchThroughHandler::OnClientMessage(const char *msg) {
+    printf("---------------- debug info:  ");
+    printf(msg);
+    printf("\n");
 }

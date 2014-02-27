@@ -13,7 +13,7 @@
 #include "NatPunchthroughClient.h"
 #include "P2PConnectManager.h"
 
-class NatPunchThroughHandler : public BaseStageHandler,public NatPunchthroughDebugInterface_Printf{
+class NatPunchThroughHandler : public BaseStageHandler,public NatPunchthroughDebugInterface{
 public:
 
     NatPunchthroughClient* punchthroughClient;
@@ -26,6 +26,8 @@ public:
     virtual void startCountDown() override;
 
     virtual void onTimeOutHandler() override;
+
+    virtual void OnClientMessage(const char *msg) override;
 };
 
 
