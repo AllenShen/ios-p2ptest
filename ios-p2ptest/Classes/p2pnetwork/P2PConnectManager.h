@@ -16,6 +16,8 @@
 #include "UPnPHandler.h"
 #include "NatPunchThroughHandler.h"
 #include "UDPProxyHandler.h"
+#include "cocos2d.h"
+USING_NS_CC;
 
 using namespace std;
 

@@ -10,6 +10,7 @@
 #include "NatTypeDetectionHandler.h"
 #include "P2PManagerFunc.h"
 #include "UDPProxyCommon.h"
+#include "HelloWorldScene.h"
 
 P2PConnectManager::P2PConnectManager():
 natTypeDetectionHandler(NULL),
@@ -31,9 +32,6 @@ void P2PConnectManager::initInfo() {
 
     this->connectType = PeerConnectType_Node;
 
-    this->isHost = false;
-    this->peerGuid.FromString("");
-
     clientNatType = NAT_TYPE_UNKNOWN;
 
     this->natCompleteServerIp = DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_IP;
@@ -50,8 +48,8 @@ void P2PConnectManager::initInfo() {
     natPunchThroughHandler = new NatPunchThroughHandler();
     proxyHandler = new UDPProxyHandler();
 
-    this->peerGuid.FromString("18446744071878917161");
-    this->isHost = false;
+    this->peerGuid.FromString("18446744073474235218");
+    this->isHost = true;
 
     enterStage(P2PStage_Initial, NULL);
 
@@ -181,6 +179,10 @@ void P2PConnectManager::UpdateRakNet()
                     printf("ID_CONNECTION_REQUEST_ACCEPTED to %s with GUID %s\n", packet->systemAddress.ToString(true), packet->guid.ToString());
                     printf("My external address is %s\n", RakNetStuff::rakPeer->GetExternalID(packet->systemAddress).ToString(true));
                     printf("My GUID is %s\n", RakNetStuff::rakPeer->GetMyGUID().ToString());
+                    if(!this->isHost)
+                    {
+                        HelloWorld::instance->pLabel->setString(RakNetStuff::rakPeer->GetMyGUID().ToString());
+                    }
                     enterStage(P2PStage_NATTypeDetection,packet);
                 }
                 else if(this->curConnectStage == P2PStage_ConnectToPeer)

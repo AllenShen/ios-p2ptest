@@ -376,7 +376,6 @@
 		4D702F31DB362385FA268D6B /* Skeleton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D70232EB5B89FA3EC67A34D /* Skeleton.cpp */; };
 		4D702F377D5E659F8E7FA812 /* CCTMXObjectGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D7025AB6CD6BCE569D2B0B1 /* CCTMXObjectGroup.cpp */; };
 		4D702F44A35D88211B92B1A6 /* RakNetSocket2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D70258BCD261B8F856F2ECD /* RakNetSocket2.cpp */; };
-		4D702F47404389C1C9739EA3 /* libwebsockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D702FECC9CD2463BCF9C470 /* libwebsockets.a */; };
 		4D702F591F2D82E1349A78E6 /* cpPivotJoint.c in Sources */ = {isa = PBXBuildFile; fileRef = 4D702E8C06608435266CC1E7 /* cpPivotJoint.c */; };
 		4D702F5D4094C3D5CCFF287A /* NatPunchthroughClient.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4D70205A2EA7300F04B02024 /* NatPunchthroughClient.cpp */; };
 		4D702F6046E70F23FAC25577 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D702A7FBC7EAB0BA0E1649D /* AudioToolbox.framework */; };
@@ -406,6 +405,7 @@
 		CEB6D41318ADFB6300F523D1 /* UPnPHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB6D41118ADFB6300F523D1 /* UPnPHandler.cpp */; };
 		CEB6D41618ADFB8100F523D1 /* BaseStageHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB6D41418ADFB8100F523D1 /* BaseStageHandler.cpp */; };
 		CEB6D41A18AE11E300F523D1 /* P2PConnectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB6D41818AE11E300F523D1 /* P2PConnectManager.cpp */; };
+		CEE8981618BEE32D00E2C35A /* libwebsockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D702FECC9CD2463BCF9C470 /* libwebsockets.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1326,7 +1326,7 @@
 				CEB4A1B518AB95210009DDF1 /* libwebp.a in Frameworks */,
 				4D7026140940906929B9D1C8 /* Foundation.framework in Frameworks */,
 				4D702E2A711A5E69B0EC87E2 /* CoreGraphics.framework in Frameworks */,
-				4D702F47404389C1C9739EA3 /* libwebsockets.a in Frameworks */,
+				CEE8981618BEE32D00E2C35A /* libwebsockets.a in Frameworks */,
 				CEB4A1B118AB94500009DDF1 /* libcurl.a in Frameworks */,
 				CEB4A1E118ABA96F0009DDF1 /* libminiupnpc.a in Frameworks */,
 			);
@@ -2921,7 +2921,7 @@
 			attributes = {
 				TargetAttributes = {
 					4D702D5502D8D21B12538B63 = {
-						DevelopmentTeam = 9E7762HRG9;
+						DevelopmentTeam = UE5H8B62F9;
 					};
 				};
 			};
@@ -3354,8 +3354,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SHEN DONGDONG (MQ834ZZFBZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: SHEN DONGDONG (MQ834ZZFBZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: SHEN DONGDONG (9W5X35798B)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: SHEN DONGDONG (9W5X35798B)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3365,10 +3365,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"/Users/shendongdong/Documents/cocos2dxpro/ios-p2ptest/ios-p2ptest/libs/libwebsockets/ios/lib",
-					"/Users/shendongdong/Documents/cocos2dxpro/ios-p2ptest/ios-p2ptest/libs",
-					"/Users/AllenShen/codes/ios-p2ptest/ios-p2ptest/libs",
-					"/Users/AllenShen/codes/ios-p2ptest/ios-p2ptest/libs/libwebsockets/ios/lib",
+					"$(SRCROOT)/ios-p2ptest/libs",
+					"$(SRCROOT)/ios-p2ptest/libs/libwebsockets/ios/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
@@ -3377,7 +3375,7 @@
 					"-websockets",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9E859DA8-9D73-4A51-B290-CE62378C9BB5";
+				PROVISIONING_PROFILE = "37050CF8-BA9C-484F-ABA8-7DF917AC6AA2";
 				USER_HEADER_SEARCH_PATHS = "\"ios-p2ptest/libs/Chipmunk/include/chipmunk\"";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3417,7 +3415,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SHEN DONGDONG (MQ834ZZFBZ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3427,10 +3425,9 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(SRCROOT)/libs",
+					"$(SRCROOT)/libs/libwebsockets/ios/lib",
 					"/Users/shendongdong/Documents/cocos2dxpro/ios-p2ptest/ios-p2ptest/libs/libwebsockets/ios/lib",
-					"/Users/shendongdong/Documents/cocos2dxpro/ios-p2ptest/ios-p2ptest/libs",
-					"/Users/AllenShen/codes/ios-p2ptest/ios-p2ptest/libs",
-					"/Users/AllenShen/codes/ios-p2ptest/ios-p2ptest/libs/libwebsockets/ios/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-lxml2",
@@ -3439,7 +3436,7 @@
 					"-websockets",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9E859DA8-9D73-4A51-B290-CE62378C9BB5";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "\"ios-p2ptest/libs/Chipmunk/include/chipmunk\"";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
