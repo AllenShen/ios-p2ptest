@@ -39,8 +39,6 @@ public:
     static PlayerReplica *playerReplica; // Network object that represents the player
     static NetworkIDManager *networkIDManager; // Unique IDs per network object
     static ReplicaManager3Irrlicht *replicaManager3; // Autoreplicate network objects
-    static NatTypeDetectionClient* natTypeDetectionClient;
-    static NatPunchthroughClient *natPunchthroughClient; // Connect peer to peer through routers
     static CloudClient *cloudClient; // Used to upload game instance to the cloud
     static FullyConnectedMesh2 *fullyConnectedMesh2; // Used to find out who is the session host
 

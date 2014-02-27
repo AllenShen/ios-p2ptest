@@ -48,7 +48,7 @@ void P2PConnectManager::initInfo() {
     natPunchThroughHandler = new NatPunchThroughHandler();
     proxyHandler = new UDPProxyHandler();
 
-    this->peerGuid.FromString("18446744073474235218");
+    this->peerGuid.FromString("18446744072572994310");
     this->isHost = true;
 
     enterStage(P2PStage_Initial, NULL);
@@ -333,15 +333,6 @@ void P2PConnectManager::UpdateRakNet()
                 break;
 #pragma 连接出错_End
 
-            case ID_FCM2_VERIFIED_JOIN_START:
-            {
-                DataStructures::List<RakNet::SystemAddress> addresses;
-                DataStructures::List<RakNet::RakNetGUID> guids;
-                RakNetStuff::fullyConnectedMesh2->GetVerifiedJoinRequiredProcessingList(packet->guid, addresses, guids);
-                for (unsigned int i=0; i < guids.Size(); i++)
-                    RakNetStuff::natPunchthroughClient->OpenNAT(guids[i], NATCompleteServerAddress);
-            }
-                break;
             case ID_FCM2_VERIFIED_JOIN_FAILED:
             {
                 printf("%s","Failed to join game session");
@@ -380,29 +371,6 @@ void P2PConnectManager::UpdateRakNet()
                 }
             }
                 break;
-            case ID_CLOUD_GET_RESPONSE:
-            {
-                RakNet::CloudQueryResult cloudQueryResult;
-                RakNetStuff::cloudClient->OnGetReponse(&cloudQueryResult, packet);
-                if (cloudQueryResult.rowsReturned.Size()>0)
-                {
-                    printf("%s","NAT punch to existing game instance");
-                    RakNetStuff::natPunchthroughClient->OpenNAT(cloudQueryResult.rowsReturned[0]->clientGUID, NATCompleteServerAddress);
-                }
-                else
-                {
-                    printf("%s","Publishing new game instance");
-
-                    // Start as a new game instance because no other games are running
-                    RakString tempStr = RakString("%s","IrrlichtDemo");
-                    RakNet::CloudKey cloudKey(tempStr,0);
-                    RakNetStuff::cloudClient->Post(&cloudKey, 0, 0, packet->guid);
-                }
-
-                RakNetStuff::cloudClient->DeallocateWithDefaultAllocator(&cloudQueryResult);
-            }
-                break;
-
             case ID_ADVERTISE_SYSTEM:
                 if (packet->guid!=RakNetStuff::rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS))
                 {

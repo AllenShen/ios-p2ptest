@@ -296,7 +296,6 @@ void NatPunchthroughClient::Update(void)
 					natPunchthroughDebugInterface->OnClientMessage(RakNet::RakString("Likely unidirectional punchthrough failure to guid %s, system address %s.", guidString, ipAddressString));
 				}
 
-				sp.testMode=SendPing::WAITING_AFTER_ALL_ATTEMPTS;
 				sp.nextActionTime=time+pc.EXTERNAL_IP_WAIT_AFTER_ALL_ATTEMPTS-delta;
 			}
 			else
@@ -418,7 +417,8 @@ void NatPunchthroughClient::OnPunchthroughFailure(void)
 }
 PluginReceiveResult NatPunchthroughClient::OnReceive(Packet *packet)
 {
-	switch (packet->data[0])
+    int packetMessId = packet->data[0];
+	switch (packetMessId)
 	{
 	case ID_NAT_GET_MOST_RECENT_PORT:
 		{
