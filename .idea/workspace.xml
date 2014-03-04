@@ -23,10 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="P2PDefines.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/P2PDefines.h">
+      <file leaf-file-name="P2PConnectManager.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="20" column="60" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+            <state line="53" column="0" selection-start="1012" selection-end="1012" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1560">
               <folding />
             </state>
           </provider>
@@ -35,22 +35,17 @@
       <file leaf-file-name="P2PConnectManager.cpp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="56" selection-start="675" selection-end="675" vertical-scroll-proportion="0.20238096" vertical-offset="391" max-vertical-offset="7440">
-              <folding>
-                <element signature="e#41#71#0" expanded="true" />
-              </folding>
+            <state line="62" column="97" selection-start="1613" selection-end="1613" vertical-scroll-proportion="0.46822742" vertical-offset="510" max-vertical-offset="8055">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="P2PConnectManager.h" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
+      <file leaf-file-name="P2PDefines.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/P2PDefines.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="1019" selection-end="1019" vertical-scroll-proportion="0.0" vertical-offset="455" max-vertical-offset="1365">
-              <folding>
-                <marker date="1393487011000" expanded="true" signature="398:482" placeholder="{...}" />
-                <marker date="1393487011000" expanded="true" signature="540:2117" placeholder="{...}" />
-              </folding>
+            <state line="20" column="42" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="780">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -101,6 +96,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -147,7 +143,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -156,6 +151,10 @@
   </component>
   <component name="RunManager" selected="Application.ios-p2ptest">
     <configuration default="true" type="AppleRunConfiguration" factoryName="Application" PROJECT_NAME="ios-p2ptest" TARGET_NAME="ios-p2ptest" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" RUN_TARGET_PROJECT_NAME="ios-p2ptest" RUN_TARGET_NAME="ios-p2ptest" MAKE_ACTIVE="TRUE" WAIT_FOR="FALSE">
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" PASS_PARENT_ENVS="FALSE" TEST_MODE="SUITE_TEST">
       <envs />
       <method />
     </configuration>
@@ -173,10 +172,6 @@
       <OutputType value="CONSOLE" save-to-file="false" />
       <FileType name="XML" />
       <JdkChoice value="FROM_MODULE" />
-      <method />
-    </configuration>
-    <configuration default="true" type="OCUnitRunConfiguration" factoryName="XCTest/Kiwi" PASS_PARENT_ENVS="FALSE" TEST_MODE="SUITE_TEST">
-      <envs />
       <method />
     </configuration>
     <configuration default="true" type="OCGoogleTestRunConfigurationType" factoryName="Google Test" PROJECT_NAME="ios-p2ptest" TARGET_NAME="ios-p2ptest" CONFIG_NAME="Debug" PASS_PARENT_ENVS="FALSE" TEST_MODE="SUITE_TEST">
@@ -203,26 +198,26 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1863" height="1058" extended-state="6" />
+    <frame x="0" y="22" width="1863" height="1058" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32942432" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24945652" sideWeight="0.6705757" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39978677" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32942432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -239,27 +234,43 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="1019" selection-end="1019" vertical-scroll-proportion="0.0" vertical-offset="455" max-vertical-offset="1365">
-          <folding>
-            <marker date="1393487011000" expanded="true" signature="398:482" placeholder="{...}" />
-            <marker date="1393487011000" expanded="true" signature="540:2117" placeholder="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/P2PDefines.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="20" column="60" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+        <state line="53" column="0" selection-start="1012" selection-end="1012" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1560">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="56" selection-start="675" selection-end="675" vertical-scroll-proportion="0.20238096" vertical-offset="391" max-vertical-offset="7440">
-          <folding>
-            <element signature="e#41#71#0" expanded="true" />
-          </folding>
+        <state line="34" column="56" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="8055">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/P2PDefines.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="60" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="1012" selection-end="1012" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1560">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/P2PDefines.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="42" selection-start="610" selection-end="610" vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="62" column="97" selection-start="1613" selection-end="1613" vertical-scroll-proportion="0.46822742" vertical-offset="510" max-vertical-offset="8055">
+          <folding />
         </state>
       </provider>
     </entry>
