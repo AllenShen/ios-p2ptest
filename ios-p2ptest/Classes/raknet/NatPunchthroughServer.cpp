@@ -426,9 +426,11 @@ void NatPunchthroughServer::OnGetMostRecentPort(Packet *packet)
 	RakNet::BitStream bsIn(packet->data, packet->length, false);
 	bsIn.IgnoreBytes(sizeof(MessageID));
 	uint16_t sessionId;
+    SystemAddress innerAddress;
 	unsigned short mostRecentPort;
 	bsIn.Read(sessionId);
 	bsIn.Read(mostRecentPort);
+    bsIn.Read(innerAddress);
 
 	unsigned int i,j;
 	User *user;
@@ -450,6 +452,8 @@ void NatPunchthroughServer::OnGetMostRecentPort(Packet *packet)
 	{
 		user=users[i];
 		user->mostRecentPort=mostRecentPort;
+        user->selfInnerAddress = innerAddress;
+
 		RakNet::Time time = RakNet::GetTime();
 
 		for (j=0; j < user->connectionAttempts.Size(); j++)
@@ -500,7 +504,8 @@ void NatPunchthroughServer::OnGetMostRecentPort(Packet *packet)
 				bsOut.Write((MessageID)ID_NAT_CONNECT_AT_TIME);
 				bsOut.Write(connectionAttempt->sessionId);
 				bsOut.Write(senderTargetAddress); // Public IP, using most recent port
-				for (j=0; j < MAXIMUM_NUMBER_OF_INTERNAL_IDS; j++) // Internal IP
+                bsOut.Write(connectionAttempt->sender->selfInnerAddress);
+				for (j=0; j < MAXIMUM_NUMBER_OF_INTERNAL_IDS - 1; j++) // Internal IP
 					bsOut.Write(rakPeerInterface->GetInternalID(senderSystemAddress,j));
 				bsOut.Write(connectionAttempt->sender->guid);
 				bsOut.Write(false);
@@ -525,7 +530,8 @@ void NatPunchthroughServer::OnGetMostRecentPort(Packet *packet)
 				bsOut.Write((MessageID)ID_NAT_CONNECT_AT_TIME);
 				bsOut.Write(connectionAttempt->sessionId);
 				bsOut.Write(recipientTargetAddress); // Public IP, using most recent port
-				for (j=0; j < MAXIMUM_NUMBER_OF_INTERNAL_IDS; j++) // Internal IP
+                bsOut.Write(connectionAttempt->recipient->selfInnerAddress);
+				for (j=0; j < MAXIMUM_NUMBER_OF_INTERNAL_IDS - 1; j++) // Internal IP
 					bsOut.Write(rakPeerInterface->GetInternalID(recipientSystemAddress,j));						
 				bsOut.Write(connectionAttempt->recipient->guid);
 				bsOut.Write(true);

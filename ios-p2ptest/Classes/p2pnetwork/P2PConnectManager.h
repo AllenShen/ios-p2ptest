@@ -42,9 +42,15 @@ public:
     NatPunchThroughHandler* natPunchThroughHandler;             //nat穿透服务类型检测
     UDPProxyHandler* proxyHandler;
 
+private:
+    void getIPAddress();
+
 public:
 
     NATTypeDetectionResult clientNatType;
+
+    string selfInnerIpAddress;
+    SystemAddress selfInnerAddress;
 
     P2PConnectStages curConnectStage;
     bool isConnectedTpPeer;

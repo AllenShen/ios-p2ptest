@@ -8,6 +8,7 @@
 #include "GetTime.h"
 #include "PacketLogger.h"
 #include "Itoa.h"
+#include "P2PConnectManager.h"
 
 using namespace RakNet;
 
@@ -127,7 +128,7 @@ void NatPunchthroughClient::Update(void)
 		if (sp.testMode==SendPing::TESTING_INTERNAL_IPS)
 		{
             SystemAddress singleAddress = sp.internalIds[sp.attemptCount];
-            printf("++++++++++++++++++++++++   he target address is %s  \n",singleAddress.ToString(true));
+            printf("++++++++++++++++++++++++   the target address is %s  \n",singleAddress.ToString(true));
 			SendOutOfBand(singleAddress,ID_NAT_ESTABLISH_UNIDIRECTIONAL);
 
 			if (++sp.retryCount>=pc.UDP_SENDS_PER_PORT_INTERNAL)
@@ -866,6 +867,9 @@ void NatPunchthroughClient::OnNewConnection(const SystemAddress &systemAddress, 
 
 		if (natPunchthroughDebugInterface)
 		{
+            //设置我方的内网地址数据
+            P2PConnectManager::getInstance()->selfInnerAddress = SystemAddress(P2PConnectManager::getInstance()->selfInnerIpAddress.c_str(),
+                    mostRecentExternalPort);
 			natPunchthroughDebugInterface->OnClientMessage(RakNet::RakString("OnNewConnection mostRecentExternalPort first time set to %i", mostRecentExternalPort));
 		}
 	}
@@ -989,6 +993,7 @@ void NatPunchthroughClient::OnGetMostRecentPort(Packet *packet)
 	else
 		portWithStride = mostRecentExternalPort;
 	outgoingBs.Write(portWithStride);
+    outgoingBs.Write(P2PConnectManager::getInstance()->selfInnerAddress);
 
 	rakPeerInterface->Send(&outgoingBs,HIGH_PRIORITY,RELIABLE_ORDERED,0,packet->systemAddress,false);
 	sp.facilitator=packet->systemAddress;
