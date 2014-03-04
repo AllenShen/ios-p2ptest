@@ -51,7 +51,7 @@ void P2PConnectManager::initInfo() {
     allHandler.push_back(natPunchThroughHandler);
     allHandler.push_back(proxyHandler);
 
-    this->peerGuid.FromString("18446744073461406419");
+    this->peerGuid.FromString("18446744073101040687");
     this->isHost = true;
 
     enterStage(P2PStage_Initial, NULL);
@@ -124,11 +124,11 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
             break;
         case P2PStage_ConnectForwardServer:
             natPunchThroughHandler->isOnTimeCountingDown = false;
-            printf("连接到代理服务器。。。。。。 \n");
+            printf("连接到转发服务器。。。。。。 \n");
             this->proxyHandler->startConnectToProxyServer();
             break;
         case P2PStage_ConnectProxyServer:
-            printf("连接到代理服务器...... \n");
+            printf("连接到代理服务器........... \n");
             break;
         case P2PStage_CountLatency:
             printf("开始估算双方通信延迟  \n");
@@ -277,8 +277,13 @@ void P2PConnectManager::UpdateRakNet()
                 }
                 else if(this->curConnectStage == P2PStage_NATPunchThrough || this->curConnectStage == P2PStage_ConnectToPeer)
                 {
-                    printf("NatCompleteServer 连接失败, 不能建立p2p连接 \n");
-                    this->enterStage(P2PStage_ConnectForwardServer);
+                    int packetCode = packet->data[0];
+                    const char* targetName;
+                    if (strcmp(packet->systemAddress.ToString(false),P2PConnectManager::getInstance()->natCompleteServerIp.c_str())==0)
+                    {
+                        printf("NatCompleteServer 连接失败, 不能建立p2p连接 \n");
+                        this->enterStage(P2PStage_ConnectForwardServer);
+                    }
                 }
                 else if(this->curConnectStage == P2PStage_ConnectForwardServer || this->curConnectStage == P2PStage_ConnectProxyServer)
                 {
@@ -417,7 +422,6 @@ void P2PConnectManager::UpdateRakNet()
                     {
                         this->averageLatency = this->averageLatency / 2 / SINGLE_MAXLATENCY_CHECKTIME;
                         printf("-----------平均延时为 %d 等待正式游戏逻辑 \n",this->averageLatency);
-                        RakNetStuff::rakPeer->CloseConnection(this->peerGuid,true);
                     }
                 }
                 else                            //继续发送延迟测试信息
