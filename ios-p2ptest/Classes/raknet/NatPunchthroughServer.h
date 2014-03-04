@@ -111,6 +111,7 @@ public:
 	{
 		RakNetGUID guid;
 		SystemAddress systemAddress;
+        SystemAddress selfInnerAddress;
 		unsigned short mostRecentPort;
 		bool isReady;
 		DataStructures::OrderedList<RakNetGUID,RakNetGUID> groupPunchthroughRequests;

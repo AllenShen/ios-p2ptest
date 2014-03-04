@@ -4,6 +4,7 @@
 //
 
 
+#include <ifaddrs.h>
 #include "P2PConnectManager.h"
 #include "GetTime.h"
 #include "UPnPHandler.h"
@@ -22,7 +23,8 @@ peerGuid(0),
 isHost(false),
 connectType(PeerConnectType_Node),
 latencyCheckIndex(0),
-averageLatency(0)
+averageLatency(0),
+selfInnerIpAddress("")
 {
 }
 
@@ -48,11 +50,46 @@ void P2PConnectManager::initInfo() {
     natPunchThroughHandler = new NatPunchThroughHandler();
     proxyHandler = new UDPProxyHandler();
 
-    this->peerGuid.FromString("18446744071858533197");
+    this->peerGuid.FromString("18446744073508371605");
     this->isHost = true;
 
     enterStage(P2PStage_Initial, NULL);
 
+}
+
+void P2PConnectManager::getIPAddress() {
+    struct ifaddrs *interfaces = NULL;
+    struct ifaddrs *temp_addr = NULL;
+    int success = 0;
+
+    // retrieve the current interfaces - returns 0 on success
+    success = getifaddrs(&interfaces);
+    if (success == 0)
+    {
+        // Loop through linked list of interfaces
+        temp_addr = interfaces;
+        while(temp_addr != NULL)
+        {
+            int familyType = temp_addr->ifa_addr->sa_family;
+            if(familyType == AF_INET)
+            {
+                if(strcmp(temp_addr->ifa_name, "en0") == 0)
+                {
+                    struct sockaddr_in * tempSockaddr = ((struct sockaddr_in *)temp_addr->ifa_addr);
+                    this->selfInnerIpAddress = inet_ntoa(tempSockaddr->sin_addr);
+                    printf("the inner0 ipaddress is %s the port is %d \n",selfInnerIpAddress.c_str(),((struct sockaddr_in *)temp_addr->ifa_addr)->sin_port);
+                }
+                else if(strcmp(temp_addr->ifa_name, "en1") == 0)
+                {
+                    this->selfInnerIpAddress = inet_ntoa(((struct sockaddr_in *)temp_addr->ifa_addr)->sin_addr);
+                    printf("the inner1 ipaddress is %s the port is %d \n",selfInnerIpAddress.c_str(),((struct sockaddr_in *)temp_addr->ifa_addr)->sin_port);
+                }
+            }
+
+            temp_addr = temp_addr->ifa_next;
+        }
+    }
+    freeifaddrs(interfaces);
 }
 
 void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
@@ -60,6 +97,10 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
     curConnectStage = stage;
     switch (stage)
     {
+        case P2PStage_Initial:
+            printf("获取本机的ip地址  \n");
+            getIPAddress();
+            break;
         case P2PStage_NATTypeDetection:
             printf("检测Nat类型... \n");
             natTypeDetectionHandler->startCountDown();

@@ -6,6 +6,8 @@
 //  Copyright __MyCompanyName__ 2014. All rights reserved.
 //
 #import <UIKit/UIKit.h>
+#include <ifaddrs.h>
+#include <arpa/inet.h>
 #import "AppController.h"
 #import "cocos2d.h"
 #import "EAGLView.h"
@@ -60,9 +62,9 @@ static AppDelegate s_sharedApplication;
     [[UIApplication sharedApplication] setStatusBarHidden: YES];
 
     cocos2d::CCApplication::sharedApplication()->run();
+
     return YES;
 }
-
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
