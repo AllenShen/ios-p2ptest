@@ -14,18 +14,25 @@
 #include "RakNetDefines.h"
 
 //检测client的Nat类型
-class NatTypeDetectionHandler : public BaseStageHandler{
+class NatTypeDetecteUPNPHandler : public BaseStageHandler{
 
 private:
     NatTypeDetectionClient *natTypeDetectionClient;
 
+    int isTypedectedFinished;
+    int isUpnpFinished;
+
 public:
 
-    NatTypeDetectionHandler();
+    NatTypeDetecteUPNPHandler();
+
+    void UPNPProgressCallback(const char *progressMsg, void *userData);
+    void UPNPResultCallback(bool success, unsigned short portToOpen, void *userData);
 
     void startDetect(SystemAddress address);
+    void UPNPOpensynch(unsigned short portToOpen,unsigned int timeout);
 
-    virtual ~NatTypeDetectionHandler();
+    virtual ~NatTypeDetecteUPNPHandler();
 
     virtual void handleSinglePacket(Packet *packet) override;
 

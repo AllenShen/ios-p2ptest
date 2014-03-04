@@ -24,8 +24,7 @@ const int SINGLE_MAXLATENCY_CHECKTIME = 1;
 enum P2PConnectStages
 {
     P2PStage_Initial,
-    P2PStage_NATTypeDetection,                  //nat类型检测
-    P2PStage_UPNP,                              //绑定upnp类型
+    P2PStage_NATTypeUPNPDetection,                  //nat类型检测 + UPNP检测
     P2PStage_NATPunchThrough,                   //对目标客户端进行穿墙连接      目标客户端需要和本机连接在一台punchthrough服务器上
     P2PStage_ConnectToPeer,                     //连接到指定GUID的目标
     P2PStage_ConnectForwardServer,                //连接到转发服务器
