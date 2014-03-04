@@ -22,7 +22,7 @@ void NatPunchThroughHandler::startPunch(RakNetGUID& guid) {
 
 void NatPunchThroughHandler::startCountDown() {
     BaseStageHandler::startCountDown();
-    this->timeMileStone = GetTimeMS() + 5000000;
+    this->timeMileStone = GetTimeMS() + 100000;
 }
 
 void NatPunchThroughHandler::onTimeOutHandler() {

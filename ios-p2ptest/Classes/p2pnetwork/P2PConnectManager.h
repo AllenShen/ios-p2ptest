@@ -12,8 +12,7 @@
 #include "RakNetStuff.h"
 #include "DS_Multilist.h"
 #include "P2PDefines.h"
-#include "NatTypeDetectionHandler.h"
-#include "UPnPHandler.h"
+#include "NatTypeDetecteUPNPHandler.h"
 #include "NatPunchThroughHandler.h"
 #include "UDPProxyHandler.h"
 #include "cocos2d.h"
@@ -37,10 +36,11 @@ private:
     P2PConnectManager();
 
 public:
-    NatTypeDetectionHandler* natTypeDetectionHandler;           //nat类型检测client
-    UPnPHandler* uPnPHandler;                                   //upnp服务类型检测
+    NatTypeDetecteUPNPHandler * natTypeDetectionHandler;           //nat类型检测client
     NatPunchThroughHandler* natPunchThroughHandler;             //nat穿透服务类型检测
     UDPProxyHandler* proxyHandler;
+
+    vector<BaseStageHandler*> allHandler;
 
 private:
     void getIPAddress();

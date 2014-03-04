@@ -7,15 +7,13 @@
 #include <ifaddrs.h>
 #include "P2PConnectManager.h"
 #include "GetTime.h"
-#include "UPnPHandler.h"
-#include "NatTypeDetectionHandler.h"
+#include "NatTypeDetecteUPNPHandler.h"
 #include "P2PManagerFunc.h"
 #include "UDPProxyCommon.h"
 #include "HelloWorldScene.h"
 
 P2PConnectManager::P2PConnectManager():
 natTypeDetectionHandler(NULL),
-uPnPHandler(NULL),
 natPunchThroughHandler(NULL),
 proxyHandler(NULL),
 isConnectedTpPeer(false),
@@ -45,12 +43,15 @@ void P2PConnectManager::initInfo() {
     NATCompleteServerAddress = SystemAddress(natCompleteServerIp.c_str(),NatCompleteServetPort);
     ProxyServerArrress = SystemAddress(proxyServerIp.c_str(),proxyServerPort);
 
-    natTypeDetectionHandler = new NatTypeDetectionHandler();
-    uPnPHandler = new UPnPHandler();
+    natTypeDetectionHandler = new NatTypeDetecteUPNPHandler();
     natPunchThroughHandler = new NatPunchThroughHandler();
     proxyHandler = new UDPProxyHandler();
 
-    this->peerGuid.FromString("18446744073508371605");
+    allHandler.push_back(natTypeDetectionHandler);
+    allHandler.push_back(natPunchThroughHandler);
+    allHandler.push_back(proxyHandler);
+
+    this->peerGuid.FromString("18446744073461406419");
     this->isHost = true;
 
     enterStage(P2PStage_Initial, NULL);
@@ -101,15 +102,10 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
             printf("获取本机的ip地址  \n");
             getIPAddress();
             break;
-        case P2PStage_NATTypeDetection:
+        case P2PStage_NATTypeUPNPDetection:
             printf("检测Nat类型... \n");
             natTypeDetectionHandler->startCountDown();
             this->natTypeDetectionHandler->startDetect(NATCompleteServerAddress);
-            break;
-        case P2PStage_UPNP:
-            printf("开始绑定UPnP...  \n");
-            this->uPnPHandler->startUPnp();
-            this->uPnPHandler->handleSinglePacket(packet);
             break;
         case P2PStage_NATPunchThrough:
             natPunchThroughHandler->startCountDown();
@@ -182,11 +178,8 @@ BaseStageHandler *P2PConnectManager::getTargetHandlerByStage()
     switch (curConnectStage)
     {
         case P2PStage_Initial:
-        case P2PStage_NATTypeDetection:
+        case P2PStage_NATTypeUPNPDetection:
             retHandler = natTypeDetectionHandler;
-            break;
-        case P2PStage_UPNP:
-            retHandler = uPnPHandler;
             break;
         case P2PStage_NATPunchThrough:
             retHandler = natPunchThroughHandler;
@@ -224,7 +217,8 @@ void P2PConnectManager::UpdateRakNet()
                     {
                         HelloWorld::instance->pLabel->setString(RakNetStuff::rakPeer->GetMyGUID().ToString());
                     }
-                    enterStage(P2PStage_NATTypeDetection,packet);
+                    enterStage(P2PStage_NATTypeUPNPDetection,packet);
+                    enterStage(P2PStage_NATPunchThrough,packet);
                 }
                 else if(this->curConnectStage == P2PStage_ConnectToPeer)
                 {
@@ -300,7 +294,7 @@ void P2PConnectManager::UpdateRakNet()
             case ID_NAT_TARGET_UNRESPONSIVE:
             case ID_NAT_CONNECTION_TO_TARGET_LOST:
             {
-                printf("穿墙阶段连接信息丢失  \n");
+                printf("穿墙阶段连接信息丢失.....  \n");
                 RakNet::RakNetGUID recipientGuid;
                 RakNet::BitStream bs(packet->data,packet->length,false);
                 bs.IgnoreBytes(sizeof(RakNet::MessageID));
@@ -374,54 +368,6 @@ void P2PConnectManager::UpdateRakNet()
                 break;
 #pragma 连接出错_End
 
-            case ID_FCM2_VERIFIED_JOIN_FAILED:
-            {
-                printf("%s","Failed to join game session");
-            }
-                break;
-            case ID_FCM2_VERIFIED_JOIN_CAPABLE:
-            {
-                RakNetStuff::fullyConnectedMesh2->RespondOnVerifiedJoinCapable(packet, true, 0);
-            }
-                break;
-            case ID_FCM2_VERIFIED_JOIN_ACCEPTED:
-            {
-                DataStructures::List<RakNet::RakNetGUID> systemsAccepted;
-                bool thisSystemAccepted;
-                RakNetStuff::fullyConnectedMesh2->GetVerifiedJoinAcceptedAdditionalData(packet, &thisSystemAccepted, systemsAccepted, 0);
-                if (thisSystemAccepted)
-                    printf("Game join request accepted\n");
-                else
-                    printf("System %s joined the mesh\n", systemsAccepted[0].ToString());
-
-                // DataStructures::List<RakNetGUID> participantList;
-                // fullyConnectedMesh2->GetParticipantList(participantList);
-
-                for (unsigned int i=0; i < systemsAccepted.Size(); i++)
-                    RakNetStuff::replicaManager3->PushConnection(RakNetStuff::replicaManager3->AllocConnection(RakNetStuff::rakPeer->GetSystemAddressFromGuid(systemsAccepted[i]), systemsAccepted[i]));
-            }
-                break;
-            case ID_FCM2_NEW_HOST:
-            {
-                if (packet->guid==RakNetStuff::rakPeer->GetMyGUID())
-                {
-                    // Original host dropped. I am the new session host. Upload to the cloud so new players join this system.
-                    RakString tempStr = RakString("%s","IrrlichtDemo");
-                    RakNet::CloudKey cloudKey(tempStr,0);
-                    RakNetStuff::cloudClient->Post(&cloudKey, 0, 0, RakNetStuff::rakPeer->GetGuidFromSystemAddress(NATCompleteServerAddress));
-                }
-            }
-                break;
-            case ID_ADVERTISE_SYSTEM:
-                if (packet->guid!=RakNetStuff::rakPeer->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS))
-                {
-                    char hostIP[32];
-                    packet->systemAddress.ToString(false,hostIP);
-                    RakNet::ConnectionAttemptResult car = RakNetStuff::rakPeer->Connect(hostIP,packet->systemAddress.GetPort(),0,0);
-                    RakAssert(car==RakNet::CONNECTION_ATTEMPT_STARTED);
-                }
-                break;
-
 #pragma 延迟探测信息_Start
 
             case ID_USER_CheckLatency:           //收到peer发来的信息
@@ -471,6 +417,7 @@ void P2PConnectManager::UpdateRakNet()
                     {
                         this->averageLatency = this->averageLatency / 2 / SINGLE_MAXLATENCY_CHECKTIME;
                         printf("-----------平均延时为 %d 等待正式游戏逻辑 \n",this->averageLatency);
+                        RakNetStuff::rakPeer->CloseConnection(this->peerGuid,true);
                     }
                 }
                 else                            //继续发送延迟测试信息
@@ -516,13 +463,17 @@ void P2PConnectManager::UpdateRakNet()
         }
     }
 
-    BaseStageHandler* curHandler = this->getTargetHandlerByStage();
-    if(curHandler)                          //当前正在处理的handler
+    if(curTime > natTypeDetectionHandler->timeMileStone)         //此handler执行时间已经过期
     {
-        if(curTime > curHandler->timeMileStone)         //此handler执行时间已经过期
-        {
-            curHandler->onTimeOutHandler();
-        }
+        natTypeDetectionHandler->onTimeOutHandler();
+    }
+    if(curTime > natPunchThroughHandler->timeMileStone)         //此handler执行时间已经过期
+    {
+        natPunchThroughHandler->onTimeOutHandler();
+    }
+    if(curTime > proxyHandler->timeMileStone)         //此handler执行时间已经过期
+    {
+        proxyHandler->onTimeOutHandler();
     }
 
 }
