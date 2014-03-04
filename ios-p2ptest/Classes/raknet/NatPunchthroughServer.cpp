@@ -218,7 +218,7 @@ PluginReceiveResult NatPunchthroughServer::OnReceive(Packet *packet)
 	case ID_NAT_PUNCHTHROUGH_REQUEST:
 		OnNATPunchthroughRequest(packet);
 		return RR_STOP_PROCESSING_AND_DEALLOCATE;
-	case ID_NAT_GET_MOST_RECENT_PORT:
+	case ID_NAT_GET_MOST_RECENT_PORT:                       //收到客户端返回的port信息
 		OnGetMostRecentPort(packet);
 		return RR_STOP_PROCESSING_AND_DEALLOCATE;
 	case ID_NAT_CLIENT_READY:
