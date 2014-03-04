@@ -126,7 +126,9 @@ void NatPunchthroughClient::Update(void)
 		RakNet::Time delta = time - sp.nextActionTime;
 		if (sp.testMode==SendPing::TESTING_INTERNAL_IPS)
 		{
-			SendOutOfBand(sp.internalIds[sp.attemptCount],ID_NAT_ESTABLISH_UNIDIRECTIONAL);
+            SystemAddress singleAddress = sp.internalIds[sp.attemptCount];
+            printf("++++++++++++++++++++++++   he target address is %s  \n",singleAddress.ToString(true));
+			SendOutOfBand(singleAddress,ID_NAT_ESTABLISH_UNIDIRECTIONAL);
 
 			if (++sp.retryCount>=pc.UDP_SENDS_PER_PORT_INTERNAL)
 			{
@@ -420,11 +422,19 @@ PluginReceiveResult NatPunchthroughClient::OnReceive(Packet *packet)
     int packetMessId = packet->data[0];
 	switch (packetMessId)
 	{
-	case ID_NAT_GET_MOST_RECENT_PORT:
+	case ID_NAT_GET_MOST_RECENT_PORT:                                   //取得最近使用的port
 		{
 			OnGetMostRecentPort(packet);
 			return RR_STOP_PROCESSING_AND_DEALLOCATE;
 		}
+        break;
+    case ID_TIMESTAMP:                                  //得到时间戳
+        if (packet->data[sizeof(MessageID)+sizeof(RakNet::Time)]==ID_NAT_CONNECT_AT_TIME)
+        {
+            OnConnectAtTime(packet);
+            return RR_STOP_PROCESSING_AND_DEALLOCATE;
+        }
+        break;
 	case ID_NAT_PUNCHTHROUGH_FAILED:
 	case ID_NAT_PUNCHTHROUGH_SUCCEEDED:
 		if (packet->wasGeneratedLocally==false)
@@ -700,13 +710,7 @@ PluginReceiveResult NatPunchthroughClient::OnReceive(Packet *packet)
 			*/
 		}
 		break;
-	case ID_TIMESTAMP:
-		if (packet->data[sizeof(MessageID)+sizeof(RakNet::Time)]==ID_NAT_CONNECT_AT_TIME)
-		{
-			OnConnectAtTime(packet);
-			return RR_STOP_PROCESSING_AND_DEALLOCATE;
-		}
-		break;
+
 	}
 	return RR_CONTINUE_PROCESSING;
 }
