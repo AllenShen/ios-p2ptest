@@ -404,6 +404,9 @@
 		CEB4A1E118ABA96F0009DDF1 /* libminiupnpc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB4A1E018ABA96F0009DDF1 /* libminiupnpc.a */; };
 		CEB6D41618ADFB8100F523D1 /* BaseStageHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB6D41418ADFB8100F523D1 /* BaseStageHandler.cpp */; };
 		CEB6D41A18AE11E300F523D1 /* P2PConnectManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CEB6D41818AE11E300F523D1 /* P2PConnectManager.cpp */; };
+		CEBEBAE418C6058A0035EA3D /* logoanim_SheetAnimations.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEBEBAE118C6058A0035EA3D /* logoanim_SheetAnimations.plist */; };
+		CEBEBAE518C6058A0035EA3D /* logoanim.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEBEBAE218C6058A0035EA3D /* logoanim.plist */; };
+		CEBEBAE618C6058A0035EA3D /* logoanim.png in Resources */ = {isa = PBXBuildFile; fileRef = CEBEBAE318C6058A0035EA3D /* logoanim.png */; };
 		CEE8981618BEE32D00E2C35A /* libwebsockets.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4D702FECC9CD2463BCF9C470 /* libwebsockets.a */; };
 /* End PBXBuildFile section */
 
@@ -1307,6 +1310,9 @@
 		CEB6D41518ADFB8100F523D1 /* BaseStageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseStageHandler.h; sourceTree = "<group>"; };
 		CEB6D41818AE11E300F523D1 /* P2PConnectManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = P2PConnectManager.cpp; sourceTree = "<group>"; };
 		CEB6D41918AE11E300F523D1 /* P2PConnectManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P2PConnectManager.h; sourceTree = "<group>"; };
+		CEBEBAE118C6058A0035EA3D /* logoanim_SheetAnimations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = logoanim_SheetAnimations.plist; path = Resources/logoanim_SheetAnimations.plist; sourceTree = "<group>"; };
+		CEBEBAE218C6058A0035EA3D /* logoanim.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = logoanim.plist; path = Resources/logoanim.plist; sourceTree = "<group>"; };
+		CEBEBAE318C6058A0035EA3D /* logoanim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logoanim.png; path = Resources/logoanim.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1335,6 +1341,9 @@
 		4D7020005440C320A97C4936 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CEBEBAE118C6058A0035EA3D /* logoanim_SheetAnimations.plist */,
+				CEBEBAE218C6058A0035EA3D /* logoanim.plist */,
+				CEBEBAE318C6058A0035EA3D /* logoanim.png */,
 				4D70232AC6934559D3333F70 /* CloseNormal.png */,
 				4D70231EDC7462CFC93FCA86 /* CloseSelected.png */,
 				4D7021286B06EF95A37B67A9 /* Default.png */,
@@ -2947,6 +2956,7 @@
 				4D702882429013ECA50607FA /* CloseNormal.png in Resources */,
 				4D7022706575DC0DBDA086A0 /* CloseSelected.png in Resources */,
 				4D70286DA792D90E33E6AABD /* Default.png in Resources */,
+				CEBEBAE418C6058A0035EA3D /* logoanim_SheetAnimations.plist in Resources */,
 				4D7023EB1CEDDF56FBD8F701 /* HelloWorld.png in Resources */,
 				4D702FA1590BA8154FC339CC /* Icon-72.png in Resources */,
 				4D702635C73D01ACF093E514 /* Icon-Small-50.png in Resources */,
@@ -2954,10 +2964,12 @@
 				4D702A6DBD2DB466684277B5 /* Icon-Small@2x.png in Resources */,
 				4D702EA9603D6C3D39A95F30 /* Icon.png in Resources */,
 				4D70261B88EDC575167B7127 /* Icon@2x.png in Resources */,
+				CEBEBAE618C6058A0035EA3D /* logoanim.png in Resources */,
 				4D702D1B100D719BE9CBDD78 /* iTunesArtwork in Resources */,
 				4D702C3F4F64E1CFB9900331 /* RakNet.vcproj in Resources */,
 				4D7029B11AD23E1B9B88C3A6 /* CMakeLists.txt in Resources */,
 				4D702778DF9F91C485D55FB7 /* RakNet_vc8.vcproj in Resources */,
+				CEBEBAE518C6058A0035EA3D /* logoanim.plist in Resources */,
 				4D70217BCDD4C5A19A9CF2BD /* RakNet_vc9.vcproj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

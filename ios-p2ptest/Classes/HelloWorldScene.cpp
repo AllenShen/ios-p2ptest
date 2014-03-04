@@ -68,14 +68,36 @@ bool HelloWorld::init()
     this->addChild(pLabel, 1);
 
     // add "HelloWorld" splash screen"
-    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
+//    CCSprite* pSprite = CCSprite::create("HelloWorld.png");
+//
+//    // position the sprite on the center of the screen
+//    pSprite->setPosition( ccp(size.width/2, size.height/2) );
+//
+//    // add the sprite as a child to this layer
+//    this->addChild(pSprite, 0);
 
-    // position the sprite on the center of the screen
-    pSprite->setPosition( ccp(size.width/2, size.height/2) );
+    CCSpriteFrameCache::sharedSpriteFrameCache()->addSpriteFramesWithFile("logoanim.plist");
 
-    // add the sprite as a child to this layer
-    this->addChild(pSprite, 0);
-    
+    CCArray* framesArr = CCArray::create();
+    for(int i =0;i < 40;i++)
+    {
+        char framename[50] = {};
+        if(i < 10)
+            sprintf(framename,"logoanim000%d",i);
+        else
+            sprintf(framename,"logoanim00%d",i);
+        CCSpriteFrame* spriteFrame = CCSpriteFrameCache::sharedSpriteFrameCache()->spriteFrameByName(framename);
+        if(spriteFrame)
+            framesArr->addObject(spriteFrame);
+    }
+    CCAnimation* singleAnim = CCAnimation::createWithSpriteFrames(framesArr, 0.08);
+
+    CCSprite* animSprite = CCSprite::create();
+    animSprite->runAction(CCRepeatForever::create(CCAnimate::create(singleAnim)));
+    this->addChild(animSprite);
+    animSprite->setPosition(ccp(CCDirector::sharedDirector()->getWinSize().width/2, CCDirector::sharedDirector()->getWinSize().height/2));
+    animSprite->setAnchorPoint(ccp(0.5, 0.5));
+
     return true;
 }
 

@@ -1,0 +1,890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>about</key>
+	<dict>
+		<key>app</key>
+		<string>SpriteHelper</string>
+		<key>author</key>
+		<string>Vladu Bogdan</string>
+		<key>web</key>
+		<string>http://www.gamedevhelper.com</string>
+	</dict>
+	<key>animations</key>
+	<dict>
+		<key>logoanim</key>
+		<dict>
+			<key>delayPerUnit</key>
+			<real>0.079999998211860657</real>
+			<key>frames</key>
+			<array>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0000</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0001</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0002</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0003</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0004</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0005</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0006</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0007</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0008</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0009</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0010</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0011</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0012</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0013</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0014</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0015</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0016</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0017</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0018</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0019</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0020</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0021</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0022</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0023</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0024</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0025</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0026</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0027</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0028</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0029</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0030</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0031</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0032</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0033</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0034</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0035</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0036</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0037</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0038</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0039</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0040</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0041</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0042</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0043</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0044</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0045</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0046</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0047</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0048</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0049</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0050</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0051</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0052</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0053</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0054</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0055</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0056</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0057</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0058</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0059</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0060</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0061</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0062</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0063</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0064</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0065</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0066</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0067</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0068</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0069</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0070</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0071</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0072</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0073</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0074</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0075</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0076</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0077</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0078</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0079</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0080</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0081</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0082</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0083</string>
+				</dict>
+				<dict>
+					<key>delayUnits</key>
+					<real>1</real>
+					<key>notification</key>
+					<dict/>
+					<key>offset</key>
+					<string>{0, 0}</string>
+					<key>spriteframe</key>
+					<string>logoanim0084</string>
+				</dict>
+			</array>
+			<key>loop</key>
+			<false/>
+			<key>loops</key>
+			<integer>1</integer>
+			<key>maxRandomTime</key>
+			<real>0.30000001192092896</real>
+			<key>minRandomTime</key>
+			<real>0.10000000149011612</real>
+			<key>randomFrames</key>
+			<false/>
+			<key>randomReplay</key>
+			<false/>
+			<key>restoreOriginalFrame</key>
+			<false/>
+		</dict>
+	</dict>
+</dict>
+</plist>
