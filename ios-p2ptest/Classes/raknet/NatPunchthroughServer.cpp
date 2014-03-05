@@ -271,9 +271,6 @@ PluginReceiveResult NatPunchthroughServer::OnReceive(Packet *packet)
 			return RR_STOP_PROCESSING_AND_DEALLOCATE;
 		}
             return RR_STOP_PROCESSING_AND_DEALLOCATE;
-        case ID_USER_CheckServerLatecy:         //收到用户发来的消息
-            onClientAdjustTime(packet);
-            return RR_STOP_PROCESSING_AND_DEALLOCATE;
 	}
 	return RR_CONTINUE_PROCESSING;
 }
@@ -563,28 +560,6 @@ void NatPunchthroughServer::OnGetMostRecentPort(Packet *packet)
 		}
 
 	}
-}
-
-void NatPunchthroughServer::onClientAdjustTime(Packet *packet) {
-    RakNet::BitStream bs(packet->data, packet->length, false);
-    bs.IgnoreBytes(sizeof(MessageID));
-    RakNet::BitStream outgoingBs;
-    outgoingBs.Write((MessageID)ID_SERVER_CheckServerLatecyBack);
-    if(packet->length == 2)
-    {
-        TimeMS curClientTIme;
-        bs.Read(curClientTIme);
-        outgoingBs.Write(curClientTIme);
-    }
-    else                                               //带有已知延迟的消息处理
-    {
-        TimeMS curClientTIme;
-        bs.Read(curClientTIme);
-        int curLatency;
-        bs.Read(curLatency);
-        outgoingBs.Write(curClientTIme);
-        outgoingBs.Write(curClientTIme + curLatency);
-    }
 }
 
 void NatPunchthroughServer::StartPunchthroughForUser(User *user)

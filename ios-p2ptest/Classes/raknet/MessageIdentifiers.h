@@ -425,9 +425,8 @@ enum DefaultMessageIDTypes
     ID_USER_CheckLatency_FeedBack,                          //收到测试延迟消息的反馈信息
     ID_USER_NotifySelfLatency,                          //收到测试延迟消息的反馈信息
 
-    ID_USER_CheckServerLatecy,                          //检查延迟
-    ID_SERVER_CheckServerLatecyBack,                    //服务器返回检查延迟
-    ID_SERVER_CheckServerLatecyWithLatecyBack,          //服务器返回 带有已知延迟时间的延迟检查
+    ID_USER_AppointStartTime,                          //检查延迟
+    ID_USER_AppointStartTimeBack,                    //服务器返回检查延迟
 
 
 	//-------------------------------------------------------------------------------------------------------------

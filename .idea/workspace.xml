@@ -26,7 +26,43 @@
       <file leaf-file-name="P2PConnectManager.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="53" column="0" selection-start="958" selection-end="958" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1560">
+            <state line="108" column="29" selection-start="2429" selection-end="2429" vertical-scroll-proportion="0.0" vertical-offset="1158" max-vertical-offset="1905">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NatPunchthroughServer.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/raknet/NatPunchthroughServer.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="133" column="44" selection-start="4508" selection-end="4508" vertical-scroll-proportion="0.0" vertical-offset="1780" max-vertical-offset="2235">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="NatPunchthroughServer.cpp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/raknet/NatPunchthroughServer.cpp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="273" column="52" selection-start="8837" selection-end="8837" vertical-scroll-proportion="0.0" vertical-offset="3850" max-vertical-offset="9315">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MessageIdentifiers.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/raknet/MessageIdentifiers.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="428" column="44" selection-start="22212" selection-end="22212" vertical-scroll-proportion="0.0" vertical-offset="6241" max-vertical-offset="6660">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RakNetTime.h" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/raknet/RakNetTime.h">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="12" column="17" selection-start="433" selection-end="433" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
               <folding />
             </state>
           </provider>
@@ -35,8 +71,10 @@
       <file leaf-file-name="P2PConnectManager.cpp" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="415" column="86" selection-start="16007" selection-end="16007" vertical-scroll-proportion="0.60732114" vertical-offset="5770" max-vertical-offset="7215">
-              <folding />
+            <state line="455" column="36" selection-start="19161" selection-end="19161" vertical-scroll-proportion="0.10501193" vertical-offset="6781" max-vertical-offset="7680">
+              <folding>
+                <element signature="e#41#61#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -44,7 +82,7 @@
       <file leaf-file-name="P2PDefines.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/P2PDefines.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="765">
+            <state line="32" column="29" selection-start="1084" selection-end="1109" vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="780">
               <folding />
             </state>
           </provider>
@@ -60,15 +98,19 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
+        <option value="$PROJECT_DIR$/ios-p2ptest/Classes/raknet/NatPunchthroughServer.h" />
+        <option value="$PROJECT_DIR$/ios-p2ptest/Classes/raknet/NatPunchthroughServer.cpp" />
+        <option value="$PROJECT_DIR$/ios-p2ptest/Classes/raknet/MessageIdentifiers.h" />
         <option value="$PROJECT_DIR$/ios-p2ptest/Classes/P2PDefines.h" />
+        <option value="$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h" />
         <option value="$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1863" />
-    <option name="height" value="1058" />
+    <option name="width" value="1440" />
+    <option name="height" value="806" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -96,7 +138,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Cidr.FilesView" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -143,6 +184,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Cidr.FilesView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -218,23 +260,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1863" height="1058" extended-state="0" />
+    <frame x="0" y="22" width="1440" height="806" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32942432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32944608" sideWeight="0.49964714" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942432" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32944608" sideWeight="0.49964714" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24945652" sideWeight="0.6705757" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39978677" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24911785" sideWeight="0.6705539" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39831698" sideWeight="0.49964714" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24945652" sideWeight="0.2867804" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32942432" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32944608" sideWeight="0.50035286" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -247,11 +289,58 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="false" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="1154" selection-end="1154" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1980">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="71" selection-start="1603" selection-end="1603" vertical-scroll-proportion="0.0" vertical-offset="492" max-vertical-offset="7200">
+          <folding>
+            <element signature="e#41#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/P2PDefines.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="41" selection-start="609" selection-end="609" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/P2PDefines.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="415" column="86" selection-start="17498" selection-end="17498" vertical-scroll-proportion="0.0" vertical-offset="6225" max-vertical-offset="7200">
+          <folding>
+            <element signature="e#41#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="53" column="0" selection-start="1154" selection-end="1154" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1980">
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
       <provider selected="true" editor-type-id="text-editor">
         <state line="53" column="0" selection-start="1012" selection-end="1012" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1560">
@@ -262,7 +351,9 @@
     <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="34" column="56" selection-start="681" selection-end="681" vertical-scroll-proportion="0.0" vertical-offset="510" max-vertical-offset="8055">
-          <folding />
+          <folding>
+            <element signature="e#41#61#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -273,24 +364,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/raknet/NatPunchthroughServer.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="53" column="0" selection-start="958" selection-end="958" vertical-scroll-proportion="0.0" vertical-offset="795" max-vertical-offset="1560">
+        <state line="133" column="44" selection-start="4508" selection-end="4508" vertical-scroll-proportion="0.0" vertical-offset="1780" max-vertical-offset="2235">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/raknet/NatPunchthroughServer.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="273" column="52" selection-start="8837" selection-end="8837" vertical-scroll-proportion="0.0" vertical-offset="3850" max-vertical-offset="9315">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/P2PDefines.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="567" selection-end="567" vertical-scroll-proportion="0.0" vertical-offset="285" max-vertical-offset="765">
+        <state line="32" column="29" selection-start="1084" selection-end="1109" vertical-scroll-proportion="0.0" vertical-offset="336" max-vertical-offset="780">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/raknet/MessageIdentifiers.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="428" column="44" selection-start="22212" selection-end="22212" vertical-scroll-proportion="0.0" vertical-offset="6241" max-vertical-offset="6660">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/raknet/RakNetTime.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="17" selection-start="433" selection-end="433" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="420">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="108" column="29" selection-start="2429" selection-end="2429" vertical-scroll-proportion="0.0" vertical-offset="1158" max-vertical-offset="1905">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ios-p2ptest/Classes/p2pnetwork/P2PConnectManager.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="415" column="86" selection-start="16007" selection-end="16007" vertical-scroll-proportion="0.60732114" vertical-offset="5770" max-vertical-offset="7215">
-          <folding />
+        <state line="455" column="36" selection-start="19161" selection-end="19161" vertical-scroll-proportion="0.10501193" vertical-offset="6781" max-vertical-offset="7680">
+          <folding>
+            <element signature="e#41#61#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

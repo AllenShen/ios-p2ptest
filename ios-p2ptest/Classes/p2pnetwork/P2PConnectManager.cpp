@@ -17,7 +17,8 @@ natTypeDetectionHandler(NULL),
 natPunchThroughHandler(NULL),
 proxyHandler(NULL),
 latencyCheckIndex(0),
-generalConfigData(NULL)
+generalConfigData(NULL),
+nextActionTime(0)
 {
 }
 
@@ -45,7 +46,7 @@ void P2PConnectManager::initInfo() {
     allHandler.push_back(natPunchThroughHandler);
     allHandler.push_back(proxyHandler);
 
-    this->selfPeerDataConfig->peerGuid.FromString("18446744073101040687");
+    this->selfPeerDataConfig->peerGuid.FromString("18446744072916559383");
     this->selfPeerDataConfig->isHost = true;
 
     enterStage(P2PStage_Initial, NULL);
@@ -128,16 +129,16 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
             printf("开始估算双方通信延迟  \n");
             latencyCheckIndex = 0;
             break;
-        case P2PStage_AdjustTime:
-            printf("客户端开始对时   \n");
-//            if(this->selfPeerDataConfig->isHost)
-//            {
-//                BitStream bsOut;
-//                bsOut.Write((MessageID) ID_USER_CheckServerLatecy);
-//                TimeMS curClientTime = GetTimeMS();
-//                bsOut.Write(curClientTime);
-//                RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->generalConfigData->punchServerGuid,false);
-//            }
+        case P2PStage_AppointStartTime:
+            printf("开始约定游戏开始时间   \n");
+            if(this->selfPeerDataConfig->isHost)
+            {
+                BitStream bsOut;
+                bsOut.Write((MessageID) ID_USER_AppointStartTime);
+                TimeMS curClientTime = GetTimeMS();
+                bsOut.Write(curClientTime);
+                RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->selfPeerDataConfig->peerGuid,false);
+            }
             break;
         case P2PStage_ConnectEnd:
             break;
@@ -399,7 +400,7 @@ void P2PConnectManager::UpdateRakNet()
                     {
                         this->selfPeerDataConfig->averagePeerLatency = this->selfPeerDataConfig->averagePeerLatency / 2 / SINGLE_MAXLATENCY_CHECKTIME;
                         printf("-----------平均延时为 %d \n",this->selfPeerDataConfig->averagePeerLatency);
-                        this->enterStage(P2PStage_AdjustTime);
+                        this->enterStage(P2PStage_AppointStartTime);
                     }
                 }
                 else                            //继续发送延迟测试信息
@@ -425,7 +426,7 @@ void P2PConnectManager::UpdateRakNet()
                 {
                     this->selfPeerDataConfig->averagePeerLatency = peerlatency / 2 / SINGLE_MAXLATENCY_CHECKTIME;
                     printf("++++++++++平均延时为 %d \n",this->selfPeerDataConfig->averagePeerLatency);
-                    this->enterStage(P2PStage_AdjustTime);
+                    this->enterStage(P2PStage_AppointStartTime);
                 }
                 else                            //收到主动发的延迟信息，从我方开始测试
                 {
@@ -443,14 +444,36 @@ void P2PConnectManager::UpdateRakNet()
 
 #pragma 延迟探测信息_End
 
-#pragma 服务器对时
+#pragma 约定游戏开始时间
 
-            case ID_SERVER_CheckServerLatecyBack:             //
+            case ID_USER_AppointStartTime:                 //收到 host发来的约定消息
+            {
+                RakNet::BitStream bs(packet->data,packet->length,false);
+                bs.IgnoreBytes(sizeof(RakNet::MessageID));
+                TimeMS peerTime;
+                bs.Read(peerTime);
+
+                BitStream bsOut;
+                bsOut.Write((MessageID) ID_USER_AppointStartTimeBack);
+                TimeMS purewaitTime = this->selfPeerDataConfig->averagePeerLatency * 3;
+
+                bsOut.Write(peerTime + purewaitTime + this->selfPeerDataConfig->averagePeerLatency * 2);
+
+                this->nextActionTime = GetTimeMS() + purewaitTime + this->selfPeerDataConfig->averagePeerLatency;
+
+                RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->selfPeerDataConfig->peerGuid,false);
+                break;
+            }
+            case ID_USER_AppointStartTimeBack:             //host 收到对方返回的约定消息时间
+            {
+                RakNet::BitStream bs(packet->data,packet->length,false);
+                bs.IgnoreBytes(sizeof(RakNet::MessageID));
+                bs.Read(this->nextActionTime);
 
                 break;
+            }
 
-            case ID_SERVER_CheckServerLatecyWithLatecyBack:
-                break;
+#pragma 约定时间开始结束
 
         }
     }
@@ -466,6 +489,15 @@ void P2PConnectManager::UpdateRakNet()
     if(curTime > proxyHandler->timeMileStone)         //此handler执行时间已经过期
     {
         proxyHandler->onTimeOutHandler();
+    }
+
+    if(this->nextActionTime > 0)
+    {
+       if(curTime >= nextActionTime)
+       {
+           nextActionTime = -1;
+           printf("$$$$$$$$$$$$$$$$$$$$$ 开始游戏 $$$$$$$$$$$$$$$$$$$$$$");
+       }
     }
 
 }

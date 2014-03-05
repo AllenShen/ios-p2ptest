@@ -106,6 +106,8 @@ public:
     P2PConnectStages curConnectStage;
     int latencyCheckIndex;
 
+    TimeMS nextActionTime;
+
 public:
 
     void initInfo();
