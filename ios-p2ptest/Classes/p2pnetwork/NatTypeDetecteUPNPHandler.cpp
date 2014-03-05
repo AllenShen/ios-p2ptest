@@ -49,7 +49,7 @@ void UPNPResultCallback(bool success, unsigned short portToOpen, void *userData)
         P2PConnectManager::getInstance()->natTypeDetectionHandler->isOnTimeCountingDown = false;
     if (success)
     {
-        P2PConnectManager::getInstance()->clientNatType = NAT_TYPE_SUPPORTS_UPNP;
+        P2PConnectManager::getInstance()->generalConfigData->clientNatType = NAT_TYPE_SUPPORTS_UPNP;
         printf("upbp 端口映射成功  p2p连接可能增加。。。  \n");
     }
     else
@@ -93,7 +93,7 @@ void NatTypeDetecteUPNPHandler::handleSinglePacket(Packet *packet) {
         if(isUpnpFinished)
             this->isOnTimeCountingDown = false;
 
-        P2PConnectManager::getInstance()->clientNatType = result;
+        P2PConnectManager::getInstance()->generalConfigData->clientNatType = result;
 //        if (result != RakNet::NAT_TYPE_NONE)                    //存在NAT的情形，需要打开upnp操作
 //        {
 //            P2PConnectManager::getInstance()->enterStage(P2PStage_UPNP);

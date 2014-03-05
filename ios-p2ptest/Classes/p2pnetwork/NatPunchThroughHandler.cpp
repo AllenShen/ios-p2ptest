@@ -17,7 +17,7 @@ punchthroughClient(NULL)
 }
 
 void NatPunchThroughHandler::startPunch(RakNetGUID& guid) {
-    punchthroughClient->OpenNAT(guid, P2PConnectManager::getInstance()->NATCompleteServerAddress);
+    punchthroughClient->OpenNAT(guid, P2PConnectManager::getInstance()->generalConfigData->NATCompleteServerAddress);
 }
 
 void NatPunchThroughHandler::startCountDown() {

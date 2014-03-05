@@ -20,7 +20,7 @@ void P2PManagerFunc::printPacketMessages(Packet *packet)
         return;
     int packetCode = packet->data[0];
     const char* targetName;
-    if (strcmp(packet->systemAddress.ToString(false),P2PConnectManager::getInstance()->natCompleteServerIp.c_str())==0)
+    if (strcmp(packet->systemAddress.ToString(false),P2PConnectManager::getInstance()->generalConfigData->natCompleteServerIp.c_str())==0)
     {
         targetName = "NATPunchthroughServer";
     }
