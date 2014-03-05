@@ -131,6 +131,8 @@ protected:
 	void OnGetMostRecentPort(Packet *packet);
 	void OnClientReady(Packet *packet);
 
+    void onClientAdjustTime(Packet* packet);
+
 	void SendTimestamps(void);
 	void StartPendingPunchthrough(void);
 	void StartPunchthroughForUser(User*user);

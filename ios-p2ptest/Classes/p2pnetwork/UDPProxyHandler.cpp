@@ -39,8 +39,8 @@ void UDPProxyHandler::onTimeOutHandler()
 void UDPProxyHandler::startConnectToProxyServer() {
 
     this->startCountDown();
-    RakNet::ConnectionAttemptResult car = RakNetStuff::rakPeer->Connect(P2PConnectManager::getInstance()->proxyServerIp.c_str(),
-            P2PConnectManager::getInstance()->proxyServerPort,0,0, NULL,0,12,500,4000);
+    RakNet::ConnectionAttemptResult car = RakNetStuff::rakPeer->Connect(P2PConnectManager::getInstance()->generalConfigData->proxyServerIp.c_str(),
+            P2PConnectManager::getInstance()->generalConfigData->proxyServerPort,0,0, NULL,0,12,500,4000);
     if(car == INVALID_PARAMETER || car == CANNOT_RESOLVE_DOMAIN_NAME || car == SECURITY_INITIALIZATION_FAILED)
     {
         printf("--------------- connect to punch server error -----------------\n");

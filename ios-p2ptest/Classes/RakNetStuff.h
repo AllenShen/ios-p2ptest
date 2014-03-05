@@ -40,7 +40,6 @@ public:
     static NetworkIDManager *networkIDManager; // Unique IDs per network object
     static ReplicaManager3Irrlicht *replicaManager3; // Autoreplicate network objects
     static CloudClient *cloudClient; // Used to upload game instance to the cloud
-    static FullyConnectedMesh2 *fullyConnectedMesh2; // Used to find out who is the session host
 
     RakNetStuff();
 

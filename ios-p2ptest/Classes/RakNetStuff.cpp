@@ -16,7 +16,6 @@ PlayerReplica* RakNetStuff::playerReplica = NULL;
 NetworkIDManager* RakNetStuff::networkIDManager = NULL;
 ReplicaManager3Irrlicht* RakNetStuff::replicaManager3 = NULL;
 CloudClient* RakNetStuff::cloudClient = NULL;
-FullyConnectedMesh2* RakNetStuff::fullyConnectedMesh2 = NULL;
 
 RakNetStuff::RakNetStuff() {
     this->initRakPeer();
@@ -31,8 +30,6 @@ void RakNetStuff::clearInfo()
         rakPeer->DetachPlugin(RakNetStuff::replicaManager3);
     if(RakNetStuff::cloudClient)
         rakPeer->DetachPlugin(RakNetStuff::cloudClient);
-    if(RakNetStuff::fullyConnectedMesh2)
-        rakPeer->DetachPlugin(RakNetStuff::fullyConnectedMesh2);
     RakPeerInterface::DestroyInstance(rakPeer);
     rakPeer = NULL;
 }
@@ -76,15 +73,9 @@ void RakNetStuff::init() {
     cloudClient=new CloudClient;
     rakPeer->AttachPlugin(cloudClient);
 
-    //p2p 通信用的插件
-    fullyConnectedMesh2=new FullyConnectedMesh2;
-    fullyConnectedMesh2->SetAutoparticipateConnections(false);
-    fullyConnectedMesh2->SetConnectOnNewRemoteConnection(false, "");
-    rakPeer->AttachPlugin(fullyConnectedMesh2);
-
     //连接到公共的穿墙服务器
-    ConnectionAttemptResult car = rakPeer->Connect(P2PConnectManager::getInstance()->natCompleteServerIp.c_str(),
-            P2PConnectManager::getInstance()->NatCompleteServetPort,0,0);
+    ConnectionAttemptResult car = rakPeer->Connect(P2PConnectManager::getInstance()->generalConfigData->natCompleteServerIp.c_str(),
+            P2PConnectManager::getInstance()->generalConfigData->NatCompleteServetPort,0,0);
 //    ConnectionAttemptResult car = rakPeer->Connect("172.26.192.159", DEFAULT_NAT_PUNCHTHROUGH_FACILITATOR_PORT,0,0);
     RakAssert(car==CONNECTION_ATTEMPT_STARTED);
 

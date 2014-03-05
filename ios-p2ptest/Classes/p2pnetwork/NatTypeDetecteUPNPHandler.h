@@ -13,12 +13,25 @@
 #include "NatTypeDetectionClient.h"
 #include "RakNetDefines.h"
 
+#define executeMaxTime 4500
+
+struct UPNPOpenWorkerArgs
+{
+    char buff[256];
+    unsigned short portToOpen;
+    unsigned int timeout;
+    void *userData;
+    void (*resultCallback)(bool success, unsigned short portToOpen, void *userData);
+    void (*progressCallback)(const char *progressMsg, void *userData);
+};
+
 //检测client的Nat类型
 class NatTypeDetecteUPNPHandler : public BaseStageHandler{
 
 private:
     NatTypeDetectionClient *natTypeDetectionClient;
 
+public:
     int isTypedectedFinished;
     int isUpnpFinished;
 
@@ -26,11 +39,14 @@ public:
 
     NatTypeDetecteUPNPHandler();
 
-    void UPNPProgressCallback(const char *progressMsg, void *userData);
-    void UPNPResultCallback(bool success, unsigned short portToOpen, void *userData);
+    void UPNPOpenAsynch(unsigned short portToOpen,
+            unsigned int timeout,
+            void (*progressCallback)(const char *progressMsg, void *userData),
+            void (*resultCallback)(bool success, unsigned short portToOpen, void *userData),
+            void *userData
+    );
 
     void startDetect(SystemAddress address);
-    void UPNPOpensynch(unsigned short portToOpen,unsigned int timeout);
 
     virtual ~NatTypeDetecteUPNPHandler();
 

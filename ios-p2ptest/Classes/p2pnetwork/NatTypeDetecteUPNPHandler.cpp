@@ -23,7 +23,7 @@ isUpnpFinished(0)
 
 void NatTypeDetecteUPNPHandler::startCountDown() {
     BaseStageHandler::startCountDown();
-    this->timeMileStone = GetTimeMS() + 3000;
+    this->timeMileStone = GetTimeMS() + executeMaxTime;
 }
 
 void NatTypeDetecteUPNPHandler::onTimeOutHandler() {
@@ -37,6 +37,27 @@ void NatTypeDetecteUPNPHandler::onTimeOutHandler() {
         printf("upnp绑定超时... \n");
 }
 
+void UPNPProgressCallback(const char *progressMsg, void *userData)
+{
+    printf(progressMsg);
+}
+
+void UPNPResultCallback(bool success, unsigned short portToOpen, void *userData)
+{
+    P2PConnectManager::getInstance()->natTypeDetectionHandler->isUpnpFinished = 1;
+    if(P2PConnectManager::getInstance()->natTypeDetectionHandler->isTypedectedFinished)
+        P2PConnectManager::getInstance()->natTypeDetectionHandler->isOnTimeCountingDown = false;
+    if (success)
+    {
+        P2PConnectManager::getInstance()->generalConfigData->clientNatType = NAT_TYPE_SUPPORTS_UPNP;
+        printf("upbp 端口映射成功  p2p连接可能增加。。。  \n");
+    }
+    else
+    {
+        printf("upnp 绑定失败。。。\n");
+    }
+}
+
 void NatTypeDetecteUPNPHandler::startDetect(SystemAddress address)
 {
     if(this->isTimeUp)
@@ -46,31 +67,7 @@ void NatTypeDetecteUPNPHandler::startDetect(SystemAddress address)
     natTypeDetectionClient->DetectNATType(address);
     DataStructures::List<RakNetSocket2* > sockets;
     RakNetStuff::rakPeer->GetSockets(sockets);
-    this->UPNPOpensynch(sockets[0]->GetBoundAddress().GetPort(), 3000);
-}
-
-void NatTypeDetecteUPNPHandler::UPNPProgressCallback(const char *progressMsg, void *userData)
-{
-    printf(progressMsg);
-}
-
-void NatTypeDetecteUPNPHandler::UPNPResultCallback(bool success, unsigned short portToOpen, void *userData)
-{
-    this->isUpnpFinished = 1;
-    if(isTypedectedFinished)
-        this->isOnTimeCountingDown = false;
-    if (success)
-    {
-        P2PConnectManager::getInstance()->clientNatType = NAT_TYPE_SUPPORTS_UPNP;
-        printf("upbp 端口映射成功  p2p连接可能增加。。。  \n");
-    }
-    else
-    {
-        printf("upnp 绑定失败。。。\n");
-    }
-//    P2PConnectManager::getInstance()->uPnPHandler->isOnTimeCountingDown = false;
-    //绑定Upnp结束后 进行连接
-//    P2PConnectManager::getInstance()->enterStage(P2PStage_NATPunchThrough);
+    this->UPNPOpenAsynch(sockets[0]->GetBoundAddress().GetPort(), executeMaxTime,UPNPProgressCallback,UPNPResultCallback,0);
 }
 
 void NatTypeDetecteUPNPHandler::handleSinglePacket(Packet *packet) {
@@ -96,7 +93,7 @@ void NatTypeDetecteUPNPHandler::handleSinglePacket(Packet *packet) {
         if(isUpnpFinished)
             this->isOnTimeCountingDown = false;
 
-        P2PConnectManager::getInstance()->clientNatType = result;
+        P2PConnectManager::getInstance()->generalConfigData->clientNatType = result;
 //        if (result != RakNet::NAT_TYPE_NONE)                    //存在NAT的情形，需要打开upnp操作
 //        {
 //            P2PConnectManager::getInstance()->enterStage(P2PStage_UPNP);
@@ -109,24 +106,25 @@ void NatTypeDetecteUPNPHandler::handleSinglePacket(Packet *packet) {
 
 }
 
-void NatTypeDetecteUPNPHandler::UPNPOpensynch(unsigned short portToOpen, unsigned int timeout)
+RAK_THREAD_DECLARATION(UPNPOpenWorker)
 {
+    UPNPOpenWorkerArgs *args = ( UPNPOpenWorkerArgs * ) arguments;
     bool success=false;
-
-    char buff[256];
 
     struct UPNPDev * devlist = 0;
     RakNet::Time t1 = GetTime();
-    devlist = upnpDiscover(timeout, 0, 0, 0, 0, 0);
+    devlist = upnpDiscover(args->timeout, 0, 0, 0, 0, 0);
     RakNet::Time t2 = GetTime();
     if (devlist)
     {
-        this->UPNPProgressCallback("List of UPNP devices found on the network :\n", 0);
+        if (args->progressCallback)
+            args->progressCallback("List of UPNP devices found on the network :\n", args->userData);
         struct UPNPDev * device;
         for(device = devlist; device; device = device->pNext)
         {
-            sprintf(buff, " desc: %s\n st: %s\n\n", device->descURL, device->st);
-            this->UPNPProgressCallback(buff, 0);
+            sprintf(args->buff, " desc: %s\n st: %s\n\n", device->descURL, device->st);
+            if (args->progressCallback)
+                args->progressCallback(args->buff, args->userData);
         }
 
         char lanaddr[64];	/* my ip address on the LAN */
@@ -135,7 +133,7 @@ void NatTypeDetecteUPNPHandler::UPNPOpensynch(unsigned short portToOpen, unsigne
         if (UPNP_GetValidIGD(devlist, &urls, &data, lanaddr, sizeof(lanaddr))==1)
         {
             char iport[32];
-            Itoa(portToOpen, iport,10);
+            Itoa(args->portToOpen, iport,10);
             char eport[32];
             strcpy(eport, iport);
 
@@ -162,13 +160,15 @@ void NatTypeDetecteUPNPHandler::UPNPOpensynch(unsigned short portToOpen, unsigne
 
             if(r!=UPNPCOMMAND_SUCCESS)
             {
-                sprintf(buff, "GetSpecificPortMappingEntry() failed with code %d (%s)\n",
+                sprintf(args->buff, "GetSpecificPortMappingEntry() failed with code %d (%s)\n",
                         r, strupnperror(r));
-                this->UPNPProgressCallback(buff, 0);
+                if (args->progressCallback)
+                    args->progressCallback(args->buff, args->userData);
             }
             else
             {
-                this->UPNPProgressCallback("UPNP success.\n", 0);
+                if (args->progressCallback)
+                    args->progressCallback("UPNP success.\n", args->userData);
                 // game->myNatType=NAT_TYPE_SUPPORTS_UPNP;
 
                 success=true;
@@ -176,7 +176,26 @@ void NatTypeDetecteUPNPHandler::UPNPOpensynch(unsigned short portToOpen, unsigne
         }
     }
 
-    this->UPNPResultCallback(success, portToOpen,0);
+    if (args->resultCallback)
+        args->resultCallback(success, args->portToOpen, args->userData);
+    RakNet::OP_DELETE(args, _FILE_AND_LINE_);
+    return 0;
+}
+
+void NatTypeDetecteUPNPHandler::UPNPOpenAsynch(unsigned short portToOpen,
+        unsigned int timeout,
+        void (*progressCallback)(const char *progressMsg, void *userData),
+        void (*resultCallback)(bool success, unsigned short portToOpen, void *userData),
+        void *userData
+)
+{
+    UPNPOpenWorkerArgs *args = RakNet::OP_NEW<UPNPOpenWorkerArgs>(_FILE_AND_LINE_);
+    args->portToOpen = portToOpen;
+    args->timeout = timeout;
+    args->userData = userData;
+    args->progressCallback = progressCallback;
+    args->resultCallback = resultCallback;
+    RakThread::Create(UPNPOpenWorker, args);
 }
 
 NatTypeDetecteUPNPHandler::~NatTypeDetecteUPNPHandler() {

@@ -868,7 +868,8 @@ void NatPunchthroughClient::OnNewConnection(const SystemAddress &systemAddress, 
 		if (natPunchthroughDebugInterface)
 		{
             //设置我方的内网地址数据
-            P2PConnectManager::getInstance()->selfInnerAddress = SystemAddress(P2PConnectManager::getInstance()->selfInnerIpAddress.c_str(),
+            P2PConnectManager::getInstance()->generalConfigData->selfInnerAddress =
+                    SystemAddress(P2PConnectManager::getInstance()->generalConfigData->selfInnerIpAddress.c_str(),
                     mostRecentExternalPort);
 			natPunchthroughDebugInterface->OnClientMessage(RakNet::RakString("OnNewConnection mostRecentExternalPort first time set to %i", mostRecentExternalPort));
 		}
@@ -993,7 +994,7 @@ void NatPunchthroughClient::OnGetMostRecentPort(Packet *packet)
 	else
 		portWithStride = mostRecentExternalPort;
 	outgoingBs.Write(portWithStride);
-    outgoingBs.Write(P2PConnectManager::getInstance()->selfInnerAddress);
+    outgoingBs.Write(P2PConnectManager::getInstance()->generalConfigData->selfInnerAddress);
 
 	rakPeerInterface->Send(&outgoingBs,HIGH_PRIORITY,RELIABLE_ORDERED,0,packet->systemAddress,false);
 	sp.facilitator=packet->systemAddress;
