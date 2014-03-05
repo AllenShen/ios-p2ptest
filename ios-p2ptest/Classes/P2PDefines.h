@@ -18,7 +18,7 @@
 #define DEFAULT_UDPPROXY_PORT 61111
 #define DEFAULT_UDPPROXY_IP "42.62.67.240"
 
-const int SINGLE_MAXLATENCY_CHECKTIME = 2;
+const int SINGLE_MAXLATENCY_CHECKTIME = 5;
 
 //p2p连接的几个阶段
 enum P2PConnectStages
