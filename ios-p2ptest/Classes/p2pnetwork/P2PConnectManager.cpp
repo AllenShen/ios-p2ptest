@@ -46,7 +46,7 @@ void P2PConnectManager::initInfo() {
     allHandler.push_back(natPunchThroughHandler);
     allHandler.push_back(proxyHandler);
 
-    this->selfPeerDataConfig->peerGuid.FromString("1964818355");
+    this->selfPeerDataConfig->peerGuid.FromString("1824679405");
     this->selfPeerDataConfig->isHost = true;
 
     enterStage(P2PStage_Initial, NULL);
@@ -388,7 +388,7 @@ void P2PConnectManager::UpdateRakNet()
                 latencyCheckIndex++;
 
                 selfPeerDataConfig->averagePeerLatency += latencyTime;
-                printf("单次延迟事件为: %d   \n",latencyTime);
+                printf("单次延迟时间为: %d   \n",latencyTime);
 
                 if(SINGLE_MAXLATENCY_CHECKTIME == latencyCheckIndex)
                 {
@@ -398,7 +398,7 @@ void P2PConnectManager::UpdateRakNet()
                     RakNetStuff::getInstance()->rakPeer->Send(&bsOut,HIGH_PRIORITY,RELIABLE_ORDERED,0,this->selfPeerDataConfig->peerGuid,false);
                     if(!this->selfPeerDataConfig->isHost)
                     {
-                        this->selfPeerDataConfig->averagePeerLatency = this->selfPeerDataConfig->averagePeerLatency / 2 / SINGLE_MAXLATENCY_CHECKTIME;
+                        this->selfPeerDataConfig->averagePeerLatency = this->selfPeerDataConfig->averagePeerLatency / 2 / SINGLE_MAXLATENCY_CHECKTIME / 2;
                         printf("-----------平均延时为 %d \n",this->selfPeerDataConfig->averagePeerLatency);
                         this->enterStage(P2PStage_AppointStartTime);
                     }
@@ -424,7 +424,7 @@ void P2PConnectManager::UpdateRakNet()
                 printf("收到对方peer的游戏延迟反馈信息 \n");
                 if(this->selfPeerDataConfig->isHost)                //收到被动方的延迟信息，可以进入开始游戏阶段
                 {
-                    this->selfPeerDataConfig->averagePeerLatency = peerlatency / 2 / SINGLE_MAXLATENCY_CHECKTIME;
+                    this->selfPeerDataConfig->averagePeerLatency = peerlatency / 2 / SINGLE_MAXLATENCY_CHECKTIME / 2;
                     printf("++++++++++平均延时为 %d \n",this->selfPeerDataConfig->averagePeerLatency);
                     this->enterStage(P2PStage_AppointStartTime);
                 }
@@ -455,7 +455,7 @@ void P2PConnectManager::UpdateRakNet()
 
                 BitStream bsOut;
                 bsOut.Write((MessageID) ID_USER_AppointStartTimeBack);
-                TimeMS purewaitTime = this->selfPeerDataConfig->averagePeerLatency * 3;
+                TimeMS purewaitTime = this->selfPeerDataConfig->averagePeerLatency * 200;
 
                 bsOut.Write(peerTime + purewaitTime + this->selfPeerDataConfig->averagePeerLatency * 2);
 
