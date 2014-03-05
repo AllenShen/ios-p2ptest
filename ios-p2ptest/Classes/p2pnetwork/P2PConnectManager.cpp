@@ -52,7 +52,7 @@ void P2PConnectManager::initInfo() {
     allHandler.push_back(proxyHandler);
 
     this->peerGuid.FromString("18446744073461406419");
-    this->isHost = true;
+    this->isHost = false;
 
     enterStage(P2PStage_Initial, NULL);
 
@@ -417,7 +417,6 @@ void P2PConnectManager::UpdateRakNet()
                     {
                         this->averageLatency = this->averageLatency / 2 / SINGLE_MAXLATENCY_CHECKTIME;
                         printf("-----------平均延时为 %d 等待正式游戏逻辑 \n",this->averageLatency);
-                        RakNetStuff::rakPeer->CloseConnection(this->peerGuid,true);
                     }
                 }
                 else                            //继续发送延迟测试信息
