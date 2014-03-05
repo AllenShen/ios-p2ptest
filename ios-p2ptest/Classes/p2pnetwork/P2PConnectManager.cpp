@@ -46,7 +46,7 @@ void P2PConnectManager::initInfo() {
     allHandler.push_back(proxyHandler);
 
     this->selfPeerDataConfig->peerGuid.FromString("18446744073101040687");
-    this->selfPeerDataConfig->isHost = true;
+    this->selfPeerDataConfig->isHost = false;
 
     enterStage(P2PStage_Initial, NULL);
 
