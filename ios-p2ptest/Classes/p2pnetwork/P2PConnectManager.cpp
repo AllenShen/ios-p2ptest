@@ -145,8 +145,8 @@ void P2PConnectManager::enterStage(P2PConnectStages stage,Packet * packet)
 }
 
 void P2PConnectManager::startNetWork() {
-    RakNetStuff::getInstance();
     this->initInfo();
+    RakNetStuff::getInstance();
     RakNet::ConnectionAttemptResult car = RakNetStuff::rakPeer->Connect(generalConfigData->natCompleteServerIp.c_str(),
             generalConfigData->NatCompleteServetPort,0,0, NULL,0,12,500,4000);
     if(car == INVALID_PARAMETER || car == CANNOT_RESOLVE_DOMAIN_NAME || car == SECURITY_INITIALIZATION_FAILED)
